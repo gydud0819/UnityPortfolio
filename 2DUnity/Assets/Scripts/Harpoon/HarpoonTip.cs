@@ -2,30 +2,34 @@ using UnityEngine;
 
 public class HarpoonTip : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private float maxDistance = 5f;
-
     private Vector3 startPos;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float maxDistance = 6f;
+
     private Vector3 direction;
-    private bool isFlying = false;
+    private HarpoonPool pool;
 
-    void Update()
-    {
-        if(!isFlying) return;
-
-        transform.position += direction * speed * Time.deltaTime;
-        if(Vector3.Distance(startPos, transform.position) >= maxDistance)
-        {
-            isFlying = false;
-            gameObject.SetActive(false);
-        }
-    }
-
-    public void Fire(Vector3 dir)
+    public void Fire(Vector3 dir, HarpoonPool poolRef)
     {
         startPos = transform.position;
         direction = dir.normalized;
-        isFlying = true;
-        gameObject.SetActive(true);
+        pool = poolRef;
     }
+
+    void Update()
+    {
+        transform.position += direction * speed * Time.deltaTime;
+
+        if (Vector3.Distance(startPos, transform.position) >= maxDistance)
+        {
+            pool.ReturnHarpoon(gameObject);
+        }
+    }
+
+    public void SetPool(HarpoonPool poolRef)
+    {
+        pool = poolRef;
+        startPos = transform.position; // 시작 위치 저장
+    }
+
 }
