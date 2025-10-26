@@ -39,18 +39,17 @@ public class HarpoonFire : MonoBehaviour
         if (!movePlayer.IsHarpoonReady || isFiring) return;
 
         isFiring = true;
-        harpoonTip.SetActive(true);
         harpoonTip.transform.position = firePoint.position;
-        // 마우스 방향으로 쏘기
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        mouseWorldPos.z = 0f;
-        Vector2 direction = (mouseWorldPos - firePoint.position).normalized;
 
-        harpoon2D.linearVelocity = direction * fireSpeed;
+        // 플레이어가 마지막 조준한 방향으로 발사
+        Vector2 direction = movePlayer.GetHarpoonDirection();
 
         // 방향에 따라 회전
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         harpoonTip.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        harpoonTip.SetActive(true);
+        harpoonTip.GetComponent<HarpoonTip>().Fire(direction);
 
         Invoke("ResetHarpoon", 1.0f); // 1초 후에 작살 리셋
     }

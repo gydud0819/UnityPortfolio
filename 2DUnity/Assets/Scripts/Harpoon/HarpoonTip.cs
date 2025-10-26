@@ -21,7 +21,7 @@ public class HarpoonTip : MonoBehaviour
         }
     }
 
-    private void Fire(Vector3 dir)
+    public void Fire(Vector3 dir)
     {
         startPos = transform.position;
         direction = dir.normalized;
