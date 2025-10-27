@@ -57,7 +57,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -109,10 +109,10 @@ TextureImporter:
       name: Bubble - 8x8_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 29
-        height: 6
+        x: 0
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,7 +131,7 @@ TextureImporter:
       name: Bubble - 8x8_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 8
         y: 0
         width: 8
         height: 8
@@ -153,10 +153,10 @@ TextureImporter:
       name: Bubble - 8x8_2
       rect:
         serializedVersion: 2
-        x: 41
-        y: 1
-        width: 31
-        height: 7
+        x: 16
+        y: 0
+        width: 8
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,11 +171,143 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_3
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 246b4c2aff5ca7e419e6da38de5c61ee
+      internalID: 133628509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5091953ffe7dd314c8f2fb8746d056c1
+      internalID: -310424970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_5
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d45dbe97a2860994794cfa15e9588640
+      internalID: -280358610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f130922106653a4488335105a2987dd
+      internalID: -1880515349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcfda48b098102447826eac1f820a082
+      internalID: -1118985153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bubble - 8x8_8
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bea56274d0c863a41b49a6ae55e8adeb
+      internalID: 1903029018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 095022c55f09d2340925f9fe8186fa3c
     internalID: 0
     vertices: []
     indices: 
@@ -188,6 +320,12 @@ TextureImporter:
       Bubble - 8x8_0: -8198827200264921946
       Bubble - 8x8_1: 4859391204578764767
       Bubble - 8x8_2: 1545996203506726624
+      Bubble - 8x8_3: 133628509
+      Bubble - 8x8_4: -310424970
+      Bubble - 8x8_5: -280358610
+      Bubble - 8x8_6: -1880515349
+      Bubble - 8x8_7: -1118985153
+      Bubble - 8x8_8: 1903029018
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

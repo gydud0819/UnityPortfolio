@@ -185,8 +185,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 95
-        width: 17
+        y: 96
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -206,9 +206,9 @@ TextureImporter:
       name: Corals_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 79
-        width: 17
+        x: 16
+        y: 96
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -228,9 +228,9 @@ TextureImporter:
       name: Corals_2
       rect:
         serializedVersion: 2
-        x: 18
-        y: 95
-        width: 12
+        x: 32
+        y: 96
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -250,9 +250,9 @@ TextureImporter:
       name: Corals_3
       rect:
         serializedVersion: 2
-        x: 18
-        y: 79
-        width: 12
+        x: 48
+        y: 96
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: Corals_4
       rect:
         serializedVersion: 2
-        x: 34
-        y: 95
-        width: 11
-        height: 15
+        x: 0
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: Corals_5
       rect:
         serializedVersion: 2
-        x: 49
-        y: 95
-        width: 15
-        height: 14
+        x: 16
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,9 +316,9 @@ TextureImporter:
       name: Corals_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 63
-        width: 17
+        x: 32
+        y: 80
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -338,9 +338,9 @@ TextureImporter:
       name: Corals_7
       rect:
         serializedVersion: 2
-        x: 18
-        y: 63
-        width: 12
+        x: 48
+        y: 80
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: Corals_8
       rect:
         serializedVersion: 2
-        x: 34
-        y: 79
-        width: 11
-        height: 15
+        x: 0
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,10 +382,10 @@ TextureImporter:
       name: Corals_9
       rect:
         serializedVersion: 2
-        x: 49
-        y: 79
-        width: 15
-        height: 14
+        x: 16
+        y: 64
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,9 +404,9 @@ TextureImporter:
       name: Corals_10
       rect:
         serializedVersion: 2
-        x: 0
-        y: 47
-        width: 17
+        x: 32
+        y: 64
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -426,9 +426,9 @@ TextureImporter:
       name: Corals_11
       rect:
         serializedVersion: 2
-        x: 18
-        y: 47
-        width: 12
+        x: 48
+        y: 64
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -448,10 +448,10 @@ TextureImporter:
       name: Corals_12
       rect:
         serializedVersion: 2
-        x: 34
-        y: 63
-        width: 11
-        height: 15
+        x: 0
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,10 +470,10 @@ TextureImporter:
       name: Corals_13
       rect:
         serializedVersion: 2
-        x: 49
-        y: 63
-        width: 15
-        height: 14
+        x: 16
+        y: 48
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,9 +492,9 @@ TextureImporter:
       name: Corals_14
       rect:
         serializedVersion: 2
-        x: 0
-        y: 31
-        width: 17
+        x: 32
+        y: 48
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -514,9 +514,9 @@ TextureImporter:
       name: Corals_15
       rect:
         serializedVersion: 2
-        x: 18
-        y: 31
-        width: 12
+        x: 48
+        y: 48
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -536,10 +536,10 @@ TextureImporter:
       name: Corals_16
       rect:
         serializedVersion: 2
-        x: 34
-        y: 47
-        width: 11
-        height: 15
+        x: 0
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -558,10 +558,10 @@ TextureImporter:
       name: Corals_17
       rect:
         serializedVersion: 2
-        x: 49
-        y: 47
-        width: 15
-        height: 14
+        x: 16
+        y: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,9 +580,9 @@ TextureImporter:
       name: Corals_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 15
-        width: 17
+        x: 32
+        y: 32
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -602,9 +602,9 @@ TextureImporter:
       name: Corals_19
       rect:
         serializedVersion: 2
-        x: 18
-        y: 15
-        width: 12
+        x: 48
+        y: 32
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -624,10 +624,10 @@ TextureImporter:
       name: Corals_20
       rect:
         serializedVersion: 2
-        x: 34
-        y: 31
-        width: 11
-        height: 15
+        x: 0
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,10 +646,10 @@ TextureImporter:
       name: Corals_21
       rect:
         serializedVersion: 2
-        x: 49
-        y: 31
-        width: 15
-        height: 14
+        x: 16
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,10 +668,10 @@ TextureImporter:
       name: Corals_22
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 17
-        height: 15
+        x: 32
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -690,10 +690,10 @@ TextureImporter:
       name: Corals_23
       rect:
         serializedVersion: 2
-        x: 18
-        y: 0
-        width: 12
-        height: 15
+        x: 48
+        y: 16
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -712,10 +712,10 @@ TextureImporter:
       name: Corals_24
       rect:
         serializedVersion: 2
-        x: 34
-        y: 15
-        width: 11
-        height: 15
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -734,10 +734,10 @@ TextureImporter:
       name: Corals_25
       rect:
         serializedVersion: 2
-        x: 49
-        y: 15
-        width: 15
-        height: 14
+        x: 16
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,10 +756,10 @@ TextureImporter:
       name: Corals_26
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 0
-        width: 11
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -778,10 +778,10 @@ TextureImporter:
       name: Corals_27
       rect:
         serializedVersion: 2
-        x: 49
+        x: 48
         y: 0
-        width: 15
-        height: 13
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -800,7 +800,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f6eeda8849faf5243b6c788e2a4e0da0
     internalID: 0
     vertices: []
     indices: 

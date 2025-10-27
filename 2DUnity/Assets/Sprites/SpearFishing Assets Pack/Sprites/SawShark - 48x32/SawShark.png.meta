@@ -148,10 +148,10 @@ TextureImporter:
       name: SawShark_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 39
-        width: 44
-        height: 21
+        x: 0
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,10 +170,10 @@ TextureImporter:
       name: SawShark_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 39
-        width: 41
-        height: 21
+        x: 48
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,10 +192,10 @@ TextureImporter:
       name: SawShark_2
       rect:
         serializedVersion: 2
-        x: 102
-        y: 39
-        width: 40
-        height: 21
+        x: 96
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -214,10 +214,10 @@ TextureImporter:
       name: SawShark_3
       rect:
         serializedVersion: 2
-        x: 149
-        y: 39
-        width: 41
-        height: 21
+        x: 144
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,10 +236,10 @@ TextureImporter:
       name: SawShark_4
       rect:
         serializedVersion: 2
-        x: 194
-        y: 39
-        width: 44
-        height: 21
+        x: 192
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -258,10 +258,10 @@ TextureImporter:
       name: SawShark_5
       rect:
         serializedVersion: 2
-        x: 244
-        y: 39
-        width: 42
-        height: 21
+        x: 240
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,10 +280,10 @@ TextureImporter:
       name: SawShark_6
       rect:
         serializedVersion: 2
-        x: 295
-        y: 39
-        width: 39
-        height: 21
+        x: 288
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -302,10 +302,10 @@ TextureImporter:
       name: SawShark_7
       rect:
         serializedVersion: 2
-        x: 340
-        y: 39
-        width: 42
-        height: 21
+        x: 336
+        y: 32
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -324,10 +324,10 @@ TextureImporter:
       name: SawShark_8
       rect:
         serializedVersion: 2
-        x: 2
-        y: 7
-        width: 44
-        height: 21
+        x: 0
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -346,10 +346,10 @@ TextureImporter:
       name: SawShark_9
       rect:
         serializedVersion: 2
-        x: 53
-        y: 7
-        width: 41
-        height: 21
+        x: 48
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -368,10 +368,10 @@ TextureImporter:
       name: SawShark_10
       rect:
         serializedVersion: 2
-        x: 102
-        y: 7
-        width: 40
-        height: 21
+        x: 96
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -390,10 +390,10 @@ TextureImporter:
       name: SawShark_11
       rect:
         serializedVersion: 2
-        x: 149
-        y: 6
-        width: 41
-        height: 22
+        x: 144
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,10 +412,10 @@ TextureImporter:
       name: SawShark_12
       rect:
         serializedVersion: 2
-        x: 194
-        y: 5
-        width: 44
-        height: 23
+        x: 192
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -434,10 +434,10 @@ TextureImporter:
       name: SawShark_13
       rect:
         serializedVersion: 2
-        x: 244
-        y: 5
-        width: 42
-        height: 23
+        x: 240
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -456,10 +456,10 @@ TextureImporter:
       name: SawShark_14
       rect:
         serializedVersion: 2
-        x: 295
-        y: 5
-        width: 39
-        height: 23
+        x: 288
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,10 +478,10 @@ TextureImporter:
       name: SawShark_15
       rect:
         serializedVersion: 2
-        x: 340
-        y: 7
-        width: 42
-        height: 21
+        x: 336
+        y: 0
+        width: 48
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -500,7 +500,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 287ab2e16692aa04aa674f7b9ce1a5b5
     internalID: 0
     vertices: []
     indices: 
