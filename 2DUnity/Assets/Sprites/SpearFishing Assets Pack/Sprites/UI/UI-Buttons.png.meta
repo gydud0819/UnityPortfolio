@@ -115,10 +115,10 @@ TextureImporter:
       name: UI-Buttons_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 30
-        height: 26
+        x: 0
+        y: 0
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,10 +137,10 @@ TextureImporter:
       name: UI-Buttons_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 3
-        width: 48
-        height: 26
+        x: 31
+        y: 0
+        width: 49
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,10 +159,10 @@ TextureImporter:
       name: UI-Buttons_2
       rect:
         serializedVersion: 2
-        x: 81
-        y: 3
-        width: 30
-        height: 26
+        x: 80
+        y: 0
+        width: 31
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,10 +181,10 @@ TextureImporter:
       name: UI-Buttons_3
       rect:
         serializedVersion: 2
-        x: 112
-        y: 3
-        width: 48
-        height: 26
+        x: 111
+        y: 0
+        width: 49
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,10 +203,10 @@ TextureImporter:
       name: UI-Buttons_4
       rect:
         serializedVersion: 2
-        x: 161
-        y: 3
-        width: 30
-        height: 26
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e4b2dae85f6cf88439ec02088a298385
     internalID: 0
     vertices: []
     indices: 

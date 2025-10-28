@@ -184,10 +184,10 @@ TextureImporter:
       name: Diver 1_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 101
-        width: 17
-        height: 26
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -206,10 +206,10 @@ TextureImporter:
       name: Diver 1_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 101
-        width: 17
-        height: 26
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -228,10 +228,10 @@ TextureImporter:
       name: Diver 1_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 101
-        width: 17
-        height: 26
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +250,10 @@ TextureImporter:
       name: Diver 1_3
       rect:
         serializedVersion: 2
-        x: 104
-        y: 101
-        width: 17
-        height: 26
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -272,10 +272,10 @@ TextureImporter:
       name: Diver 1_4
       rect:
         serializedVersion: 2
-        x: 136
-        y: 101
-        width: 17
-        height: 26
+        x: 128
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,10 +294,10 @@ TextureImporter:
       name: Diver 1_5
       rect:
         serializedVersion: 2
-        x: 168
-        y: 101
-        width: 17
-        height: 26
+        x: 160
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -316,10 +316,10 @@ TextureImporter:
       name: Diver 1_6
       rect:
         serializedVersion: 2
-        x: 199
-        y: 105
-        width: 20
-        height: 22
+        x: 192
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -338,10 +338,10 @@ TextureImporter:
       name: Diver 1_7
       rect:
         serializedVersion: 2
-        x: 8
-        y: 69
-        width: 18
-        height: 26
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -360,10 +360,10 @@ TextureImporter:
       name: Diver 1_8
       rect:
         serializedVersion: 2
-        x: 40
-        y: 69
-        width: 18
-        height: 26
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -382,10 +382,10 @@ TextureImporter:
       name: Diver 1_9
       rect:
         serializedVersion: 2
-        x: 72
-        y: 69
-        width: 18
-        height: 26
+        x: 64
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -404,10 +404,10 @@ TextureImporter:
       name: Diver 1_10
       rect:
         serializedVersion: 2
-        x: 104
-        y: 69
-        width: 18
-        height: 26
+        x: 96
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -426,10 +426,10 @@ TextureImporter:
       name: Diver 1_11
       rect:
         serializedVersion: 2
-        x: 136
-        y: 69
-        width: 18
-        height: 26
+        x: 128
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,10 +448,10 @@ TextureImporter:
       name: Diver 1_12
       rect:
         serializedVersion: 2
-        x: 168
-        y: 69
-        width: 18
-        height: 26
+        x: 160
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -470,10 +470,10 @@ TextureImporter:
       name: Diver 1_13
       rect:
         serializedVersion: 2
-        x: 199
-        y: 73
-        width: 19
-        height: 22
+        x: 192
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -492,10 +492,10 @@ TextureImporter:
       name: Diver 1_14
       rect:
         serializedVersion: 2
-        x: 8
-        y: 37
-        width: 19
-        height: 26
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -514,10 +514,10 @@ TextureImporter:
       name: Diver 1_15
       rect:
         serializedVersion: 2
-        x: 40
-        y: 37
-        width: 19
-        height: 26
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,10 +536,10 @@ TextureImporter:
       name: Diver 1_16
       rect:
         serializedVersion: 2
-        x: 72
-        y: 37
-        width: 19
-        height: 26
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -558,10 +558,10 @@ TextureImporter:
       name: Diver 1_17
       rect:
         serializedVersion: 2
-        x: 104
-        y: 37
-        width: 19
-        height: 26
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -580,10 +580,10 @@ TextureImporter:
       name: Diver 1_18
       rect:
         serializedVersion: 2
-        x: 136
-        y: 37
-        width: 19
-        height: 26
+        x: 128
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -602,10 +602,10 @@ TextureImporter:
       name: Diver 1_19
       rect:
         serializedVersion: 2
-        x: 168
-        y: 37
-        width: 19
-        height: 26
+        x: 160
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -624,10 +624,10 @@ TextureImporter:
       name: Diver 1_20
       rect:
         serializedVersion: 2
-        x: 199
-        y: 41
-        width: 20
-        height: 22
+        x: 192
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -646,10 +646,10 @@ TextureImporter:
       name: Diver 1_21
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 18
-        height: 26
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -668,10 +668,10 @@ TextureImporter:
       name: Diver 1_22
       rect:
         serializedVersion: 2
-        x: 40
-        y: 5
-        width: 18
-        height: 26
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -690,10 +690,10 @@ TextureImporter:
       name: Diver 1_23
       rect:
         serializedVersion: 2
-        x: 72
-        y: 5
-        width: 18
-        height: 26
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -712,10 +712,10 @@ TextureImporter:
       name: Diver 1_24
       rect:
         serializedVersion: 2
-        x: 104
-        y: 5
-        width: 18
-        height: 26
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -734,10 +734,10 @@ TextureImporter:
       name: Diver 1_25
       rect:
         serializedVersion: 2
-        x: 136
-        y: 5
-        width: 18
-        height: 26
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -756,10 +756,10 @@ TextureImporter:
       name: Diver 1_26
       rect:
         serializedVersion: 2
-        x: 168
-        y: 5
-        width: 18
-        height: 26
+        x: 160
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -778,10 +778,10 @@ TextureImporter:
       name: Diver 1_27
       rect:
         serializedVersion: 2
-        x: 199
-        y: 9
-        width: 19
-        height: 22
+        x: 192
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -800,7 +800,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3bee1b8f7677b2e42b26b9cb0af837ee
     internalID: 0
     vertices: []
     indices: 
