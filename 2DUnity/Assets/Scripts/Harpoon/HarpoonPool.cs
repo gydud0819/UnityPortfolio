@@ -13,6 +13,11 @@ public class HarpoonPool : MonoBehaviour
         for (int i = 0; i < poolSize; i++)
         {
             GameObject obj = Instantiate(harpoonTipPrefab, transform);
+
+            HarpoonTip tip = obj.GetComponent<HarpoonTip>();
+            if (tip != null)
+                tip.SetPool(this);
+
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
@@ -20,16 +25,24 @@ public class HarpoonPool : MonoBehaviour
 
     public GameObject GetHarpoon()
     {
+        GameObject obj;
+
         if (pool.Count > 0)
         {
-            GameObject obj = pool.Dequeue();
-            obj.SetActive(true);
-            return obj;
+            obj = pool.Dequeue();
+        }
+        else
+        {
+            obj = Instantiate(harpoonTipPrefab, transform);
+
+            // 새로 생성한 작살에는 HarpoonPool 정보가 없으므로 넣어줘야 함
+            HarpoonTip tip = obj.GetComponent<HarpoonTip>();
+            if (tip != null)
+                tip.SetPool(this);
         }
 
-        // 여유없으면 추가 생성 (필요 없으면 주석처리 가능)
-        GameObject extra = Instantiate(harpoonTipPrefab, transform);
-        return extra;
+        obj.SetActive(true);
+        return obj;
     }
 
     public void ReturnHarpoon(GameObject obj)

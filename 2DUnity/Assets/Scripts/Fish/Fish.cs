@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Fish : MonoBehaviour
@@ -30,5 +31,18 @@ public class Fish : MonoBehaviour
             startPos = transform.position;
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
+    }
+
+    public void OnHitByHarpoon()
+    { 
+        StartCoroutine(Vanish());
+    }
+
+
+    private IEnumerator Vanish()
+    {
+        // 잡히는 연출
+        yield return new WaitForSeconds(0.3f);
+        Destroy(gameObject);
     }
 }

@@ -30,6 +30,6 @@ public class HarpoonFire : MonoBehaviour
         // 작살 방향 넘겨주기
         HarpoonTip tip = harpoon.GetComponent<HarpoonTip>();
         if (tip != null)
-            tip.SetPool(harpoonPool);
+            tip.Fire(direction, harpoonPool);
     }
 }
