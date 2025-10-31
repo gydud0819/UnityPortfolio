@@ -21,9 +21,6 @@ public class MovePlayer : MonoBehaviour
 
     private Vector2 harpoonDirection;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     /// <summary>
     /// 초기화 처리
     /// </summary>
@@ -51,7 +48,7 @@ public class MovePlayer : MonoBehaviour
         playerControls.Player.Hold.canceled -= OnHarpoonRelease;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Move();
 
@@ -71,6 +68,7 @@ public class MovePlayer : MonoBehaviour
 
 
         Vector2 moveDir = playerControls.Player.Move.ReadValue<Vector2>();
+        Debug.Log($"moveDir {moveDir}");
         rigidbody2D.linearVelocity = moveDir * speed;
         inputDirection = moveDir;
 
@@ -145,8 +143,3 @@ public class MovePlayer : MonoBehaviour
     }
 
 }
-
-
-
-
-
