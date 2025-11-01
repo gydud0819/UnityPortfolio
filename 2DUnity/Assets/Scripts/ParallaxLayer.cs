@@ -1,23 +1,31 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ParallaxLayer : MonoBehaviour
 {
-    [Range(0.1f, 2f)]
-    [SerializeField] private float parallaxFactor = 0.5f; // 1보다 작으면 느리게, 1보다 크면 빠르게
+    public Transform cam;           // 메인 카메라
+    public float parallax = 0.5f;   // 배경 움직임 속도 (0~1)
+    private float spriteWidth;      // 한 배경의 가로 길이
+    private Vector3 startPos;
 
-    private Transform cam;
-    private Vector3 prevCamPos;
-
-    private void Start()
+    void Start()
     {
-        cam = Camera.main.transform;
-        prevCamPos = cam.position;
+        if (!cam) cam = Camera.main.transform;
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        spriteWidth = sr.bounds.size.x;  // 배경 1장의 실제 폭
+        startPos = transform.position;
     }
 
-    private void LateUpdate()
+    void LateUpdate()
     {
-        Vector3 delta = cam.position - prevCamPos;
-        transform.position += delta * parallaxFactor;
-        prevCamPos = cam.position;
+        float distance = (cam.position.x * parallax);
+        transform.position = new Vector3(startPos.x + distance, startPos.y, startPos.z);
+
+        // 카메라가 배경 한 장 너비를 넘어가면 위치 재배치
+        float offset = cam.position.x * (1 - parallax);
+        if (offset > startPos.x + spriteWidth)
+            startPos.x += spriteWidth * 2f;
+        else if (offset < startPos.x - spriteWidth)
+            startPos.x -= spriteWidth * 2f;
     }
 }
