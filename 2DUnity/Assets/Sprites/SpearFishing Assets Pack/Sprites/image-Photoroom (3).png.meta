@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: e2a5a223c2cd8c64cb908cd32cbead56
+guid: 35d58822135d90f42ab5fb905f460e9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2382908340504850858
-    second: Harpoon_0
-  - first:
-      213: 265050883009070605
-    second: Harpoon_1
-  - first:
-      213: 1320953492869387932
-    second: Harpoon_2
+      213: 1910438696074212135
+    second: image-Photoroom (3)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Harpoon_0
+      name: image-Photoroom (3)_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 25
-        width: 32
-        height: 7
+        x: 7
+        y: 5
+        width: 247
+        height: 182
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa17b10b28ac11120800000000000000
-      internalID: 2382908340504850858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Harpoon_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 12
-        width: 32
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d06c821bf56ada300800000000000000
-      internalID: 265050883009070605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Harpoon_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c969a4bf338f45210800000000000000
-      internalID: 1320953492869387932
+      spriteID: 723f9a44fdd338a10800000000000000
+      internalID: 1910438696074212135
       vertices: []
       indices: 
       edges: []
@@ -175,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 037cbb6efa90a30468ce80d8506383e9
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Harpoon_0: 2382908340504850858
-      Harpoon_1: 265050883009070605
-      Harpoon_2: 1320953492869387932
+      image-Photoroom (3)_0: 1910438696074212135
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

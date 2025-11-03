@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class ParallaxLayer : MonoBehaviour
+public class ParallaxBackground : MonoBehaviour
 {
     public Transform cam;           // 메인 카메라
     public float parallax = 0.5f;   // 배경 움직임 속도 (0~1)
