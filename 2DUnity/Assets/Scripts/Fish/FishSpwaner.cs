@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishManager : MonoBehaviour
+public class FishSpwaner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fishPrefabs;
     [SerializeField] private float fishInterval = 2f;
