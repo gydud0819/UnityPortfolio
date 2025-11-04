@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    [SerializeField] private FishData fishData;          // 물고기 데이터
-    [SerializeField] private float moveSpeed = 1.5f;         // 움직이는 속도
-    [SerializeField] private float moveDistance = 2.5f;      // 좌우 이동 범위
+    [SerializeField] private string fishName;      // JSON에 등록된 이름
+    [SerializeField] protected float moveSpeed = 1.5f;     // 움직이는 속도
+    [SerializeField] protected float moveDistance = 2.5f;  // 좌우 이동 범위
 
-    private Rigidbody2D rigid;
-    private SpriteRenderer spriteRenderer;
-    private bool isMovingRight = true;
-    private Vector3 startPos;
+    protected Rigidbody2D rigid;
+    protected SpriteRenderer spriteRenderer;
+    protected bool isMovingRight = true;
+    protected Vector3 startPos;
 
-    private void Awake()
+    protected void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startPos = transform.position;
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         float moveDir = isMovingRight ? 1f : -1f;
         rigid.linearVelocity = new Vector2(moveDir * moveSpeed, rigid.linearVelocity.y);
@@ -35,19 +35,22 @@ public class Fish : MonoBehaviour
     }
 
     public void OnHitByHarpoon()
-    { 
-        if(fishData != null)
+    {
+        if (!string.IsNullOrEmpty(fishName))
         {
-            FishInventory.Instance.AddFish(fishData);
-            Debug.Log($"{fishData.fishName} 잡음. 현재 수량: {FishInventory.Instance.GetFishCount(fishData)}");
+            FishInventory.Instance.AddFish(fishName);
+            Debug.Log($"{fishName} 잡음! 현재 수량: {FishInventory.Instance.GetFishCount(fishName)}");
         }
+        else
+        {
+            Debug.LogWarning("fishName이 비어 있어서 인벤토리에 등록 안 됨");
+        }
+
         StartCoroutine(Vanish());
     }
 
-
-    private IEnumerator Vanish()
+    protected IEnumerator Vanish()
     {
-        // 잡히는 연출
         yield return new WaitForSeconds(0.3f);
         Destroy(gameObject);
     }

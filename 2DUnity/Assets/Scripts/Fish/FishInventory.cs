@@ -4,7 +4,8 @@ using UnityEngine;
 public class FishInventory : MonoBehaviour
 {
     public static FishInventory Instance;
-    private Dictionary<FishData, int> caughtFishDict = new Dictionary<FishData, int>();
+
+    private Dictionary<string, int> caughtFishDict = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -19,31 +20,33 @@ public class FishInventory : MonoBehaviour
         }
     }
 
-    public void AddFish(FishData fish)
+    public void AddFish(string fishName)
     {
-        if (caughtFishDict.ContainsKey(fish))
+        if (caughtFishDict.ContainsKey(fishName))
         {
-            caughtFishDict[fish]++;
+            caughtFishDict[fishName]++;
         }
         else
         {
-            caughtFishDict[fish] = 1;
+            caughtFishDict[fishName] = 1;
         }
 
-        Debug.Log($"{fish.fishName} 잡음. 현재 수량: {caughtFishDict[fish]}");
+        Debug.Log($"{fishName} 잡음! 현재 수량: {caughtFishDict[fishName]}");
     }
 
-    public int GetFishCount(FishData fish)
+    public int GetFishCount(string fishName)
     {
-        if (caughtFishDict.TryGetValue(fish, out int count))
-        {
+        if (caughtFishDict.TryGetValue(fishName, out int count))
             return count;
-        }
         return 0;
     }
 
-    public Dictionary<FishData, int> GetAllFish()
+    public void PrintInventory()
     {
-        return caughtFishDict;
+        Debug.Log("[현재 인벤토리]");
+        foreach (var fish in caughtFishDict)
+        {
+            Debug.Log($"- {fish.Key}: {fish.Value}마리");
+        }
     }
 }

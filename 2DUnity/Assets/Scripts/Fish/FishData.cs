@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "FishData", menuName = "ScriptableObjects/FishData")]
-public class FishData : MonoBehaviour
+public class FishData : ScriptableObject
 {
     public string fishName;
     public Sprite fishSprite;

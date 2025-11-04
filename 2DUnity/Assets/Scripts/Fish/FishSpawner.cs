@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishSpwaner : MonoBehaviour
+public class FishSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> fishPrefabs;
     [SerializeField] private float fishInterval = 2f;
@@ -12,10 +12,10 @@ public class FishSpwaner : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FishSpwan());
+        StartCoroutine(FishSpawn());
     }
 
-    private IEnumerator FishSpwan()
+    private IEnumerator FishSpawn()
     {
         while (true)
         {
