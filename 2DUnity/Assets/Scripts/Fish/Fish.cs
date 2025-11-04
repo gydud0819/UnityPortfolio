@@ -36,6 +36,20 @@ public class Fish : MonoBehaviour
 
     public void OnHitByHarpoon()
     {
+        // 1?. 현재 물고기 스프라이트 가져오기
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        Sprite fishSprite = sr != null ? sr.sprite : null;
+
+        // 2?.  UI 쪽에 먼저 전달
+        if (fishSprite != null)
+        {
+            FindObjectOfType<FishInventoryManager>().AddFish(fishSprite);
+        }
+        else
+        {
+            Debug.LogWarning($"{name}의 SpriteRenderer를 찾지 못해서 UI 표시 불가");
+        }
+
         if (!string.IsNullOrEmpty(fishName))
         {
             FishInventory.Instance.AddFish(fishName);
@@ -51,7 +65,8 @@ public class Fish : MonoBehaviour
 
     protected IEnumerator Vanish()
     {
-        yield return new WaitForSeconds(0.3f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(1.0f);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
