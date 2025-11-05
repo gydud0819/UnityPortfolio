@@ -125,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc78f64a43cd5c448145b508cd75f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishType: 12
   fishName: "\uCCAD\uC0C8\uCE58"
   moveSpeed: 1
   moveDistance: 5
+  isCaught: 0
 --- !u!50 &4351469420752205179
 Rigidbody2D:
   serializedVersion: 5
@@ -154,7 +156,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &3288565122835033133
 CircleCollider2D:
   m_ObjectHideFlags: 0

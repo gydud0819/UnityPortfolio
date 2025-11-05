@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6618873705894532579}
   - component: {fileID: 7857592693673309467}
   - component: {fileID: 8968966999573316310}
-  - component: {fileID: 6398302137542508811}
   - component: {fileID: 4918681020961456760}
+  - component: {fileID: 6398302137542508811}
   - component: {fileID: 845290049058806519}
   m_Layer: 0
   m_Name: puffer fish
@@ -113,6 +113,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4918681020961456760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9008512543326065316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc78f64a43cd5c448145b508cd75f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fishType: 1
+  fishName: "\uBCF5\uC5B4"
+  moveSpeed: 1
+  moveDistance: 2
+  isCaught: 0
 --- !u!50 &6398302137542508811
 Rigidbody2D:
   serializedVersion: 5
@@ -139,22 +156,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &4918681020961456760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9008512543326065316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bc78f64a43cd5c448145b508cd75f1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fishName: "\uBCF5\uC5B4"
-  moveSpeed: 1
-  moveDistance: 2
+  m_Constraints: 4
 --- !u!58 &845290049058806519
 CircleCollider2D:
   m_ObjectHideFlags: 0

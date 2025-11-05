@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8728620677155637986}
   - component: {fileID: 8922217164182692577}
   - component: {fileID: 4835614729074898338}
+  - component: {fileID: 4774981464190493167}
   m_Layer: 0
   m_Name: 'Single Shrimp '
   m_TagString: Fish
@@ -124,9 +125,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc78f64a43cd5c448145b508cd75f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fishType: 11
   fishName: "\uB3C5\uB3C4\uC0C8\uC6B0"
   moveSpeed: 0.5
   moveDistance: 4
+  isCaught: 0
 --- !u!50 &4835614729074898338
 Rigidbody2D:
   serializedVersion: 5
@@ -154,3 +157,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &4774981464190493167
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4160787081916196508}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.33333334

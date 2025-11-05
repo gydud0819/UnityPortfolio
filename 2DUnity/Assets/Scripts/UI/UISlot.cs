@@ -6,28 +6,47 @@ public class UISlot : MonoBehaviour
 {
     [SerializeField] private Image itemIcon;
     [SerializeField] private TextMeshProUGUI countText;
+
     public bool IsEmpty { get; private set; } = true;
     public Sprite CurrentSprite { get; private set; }
+    public FishType FishType { get; private set; }
     private int itemCount = 0;
 
-
-    public void SetItem(Sprite newIcon)
+    public void SetItem(Sprite newIcon, FishType fish)
     {
-        // 기존 아이템과 동일한 경우 → 수량만 증가
-        if (!IsEmpty && CurrentSprite == newIcon)
-        {
-            itemCount++;
-            UpdateCountText();
-            return;
-        }
+        if (newIcon== null) return;
 
-        // 새 아이템이 들어올 경우
+        FishType = fish;
         CurrentSprite = newIcon;
+
         itemIcon.sprite = newIcon;
         itemIcon.enabled = true;
         IsEmpty = false;
 
         itemCount = 1;
+        UpdateCountText();
+
+        //// 새 아이템일 때만 초기화
+        //if (IsEmpty)
+        //{
+        //    CurrentSprite = newIcon;
+        //    itemIcon.sprite = newIcon;
+        //    itemIcon.enabled = true;
+        //    IsEmpty = false;
+        //    itemCount = 1;
+        //}
+        //else if (CurrentSprite != null && CurrentSprite.name == newIcon.name)
+        //{
+        //    // 같은 아이템이면 수량만 증가
+        //    itemCount++;
+        //}
+
+        //UpdateCountText();
+    }
+
+    public void AddCount()
+    {
+        itemCount++;
         UpdateCountText();
     }
 
@@ -44,10 +63,14 @@ public class UISlot : MonoBehaviour
     private void UpdateCountText()
     {
         if (countText == null) return;
-
-        if (itemCount <= 1)
-            countText.text = "";   // 1마리면 숫자 안 보이게
+       
+        if(itemCount <= 1)
+        {
+            countText.text = "";
+        }
         else
+        {
             countText.text = itemCount.ToString();
+        }
     }
 }

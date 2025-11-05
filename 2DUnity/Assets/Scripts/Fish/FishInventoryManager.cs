@@ -14,7 +14,7 @@ public class FishInventoryManager : MonoBehaviour
         }
     }
 
-    public void AddFish(Sprite fishSprite)
+    public void AddFish(FishType fish, Sprite fishSprite)
     {
         if(fishSprite == null)
         {
@@ -30,6 +30,6 @@ public class FishInventoryManager : MonoBehaviour
 
         Debug.Log($"[FishInventoryManager] 물고기가 인벤토리에 추가됨. {fishSprite.name}");
 
-        inventoryUI.AddItemToUI(fishSprite);
+        inventoryUI.AddItemToUI(fish, fishSprite);
     }
 }
