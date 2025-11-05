@@ -4,73 +4,71 @@ using UnityEngine.UI;
 
 public class UISlot : MonoBehaviour
 {
-    [SerializeField] private Image itemIcon;
-    [SerializeField] private TextMeshProUGUI countText;
+    [SerializeField] private Image itemIcon;      // 아이콘 이미지
+    [SerializeField] private TMP_Text countText;  // x2, x3 표시할 텍스트
 
-    public bool IsEmpty { get; private set; } = true;
-    public Sprite CurrentSprite { get; private set; }
-    public FishType FishType { get; private set; }
-    private int itemCount = 0;
+    public bool IsEmpty => isEmpty;
+    public FishType FishType => fishType;
+    public Sprite CurrentSprite => itemIcon.sprite;
 
-    public void SetItem(Sprite newIcon, FishType fish)
+    private bool isEmpty = true;
+    private FishType fishType;   // 이 슬롯에 들어있는 물고기 종류
+    private int count = 0;
+
+    private void Awake()
     {
-        if (newIcon== null) return;
-
-        FishType = fish;
-        CurrentSprite = newIcon;
-
-        itemIcon.sprite = newIcon;
-        itemIcon.enabled = true;
-        IsEmpty = false;
-
-        itemCount = 1;
-        UpdateCountText();
-
-        //// 새 아이템일 때만 초기화
-        //if (IsEmpty)
-        //{
-        //    CurrentSprite = newIcon;
-        //    itemIcon.sprite = newIcon;
-        //    itemIcon.enabled = true;
-        //    IsEmpty = false;
-        //    itemCount = 1;
-        //}
-        //else if (CurrentSprite != null && CurrentSprite.name == newIcon.name)
-        //{
-        //    // 같은 아이템이면 수량만 증가
-        //    itemCount++;
-        //}
-
-        //UpdateCountText();
+        Clear();    // 시작할 땐 완전 빈 슬롯
     }
 
+    // 새 물고기 들어올 때 (첫 입장)
+    public void SetItem(Sprite icon, FishType type)
+    {
+        fishType = type;
+        isEmpty = false;
+        count = 1;
+
+        if (itemIcon != null)
+        {
+            itemIcon.sprite = icon;
+            itemIcon.enabled = true;
+        }
+
+        UpdateCountText();
+    }
+
+    // 같은 물고기 또 잡았을 때
     public void AddCount()
     {
-        itemCount++;
-        UpdateCountText();
-    }
+        if (isEmpty) return;   // 안전장치
 
-    public void ClearItem()
-    {
-        itemIcon.sprite = null;
-        itemIcon.enabled = false;
-        CurrentSprite = null;
-        IsEmpty = true;
-        itemCount = 0;
+        count++;
         UpdateCountText();
     }
 
     private void UpdateCountText()
     {
         if (countText == null) return;
-       
-        if(itemCount <= 1)
-        {
-            countText.text = "";
-        }
+
+        if (count <= 1)
+            countText.text = "";          // 1마리일 땐 숫자 숨김
         else
+            countText.text = "x" + count.ToString(); // x2, x3 ...
+    }
+
+    // 슬롯 비우기 (나중에 쓸 일 있으면 사용)
+    public void Clear()
+    {
+        isEmpty = true;
+        fishType = default;
+        count = 0;
+
+        if (itemIcon != null)
         {
-            countText.text = itemCount.ToString();
+            itemIcon.sprite = null;
+            itemIcon.enabled = false;
         }
+
+        if (countText != null)
+            countText.text = "";
     }
 }
