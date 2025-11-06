@@ -1,39 +1,55 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public enum FishType
 {
-    Blue, Orange, Red, Blue1, Green, Shark, Grey, JellyFish, Octopus, SawShark, SeaAngler, Shrimp, SwordFish, Squid
+    Blue, Orange, Red, Blue1, Green, Shark, Grey,
+    JellyFish, Octopus, SawShark, SeaAngler, Shrimp, SwordFish, Squid
 }
+
+[RequireComponent(typeof(Rigidbody2D), typeof(SpriteRenderer))]
 public class Fish : MonoBehaviour
 {
+    [Header("ë¬¼ê³ ê¸° ê¸°ë³¸ ì„¤ì •")]
     public FishType fishType;
 
-    [SerializeField] private string fishName;      // JSON¿¡ µî·ÏµÈ ÀÌ¸§
-    [SerializeField] protected float moveSpeed = 1.5f;     // ¿òÁ÷ÀÌ´Â ¼Óµµ
-    [SerializeField] protected float moveDistance = 2.5f;  // ÁÂ¿ì ÀÌµ¿ ¹üÀ§
+    [Tooltip("JSONì— ë“±ë¡ëœ ì´ë¦„ (FishTypeê³¼ ë™ì¼)")]
+    [SerializeField] private string fishName;
 
+    [SerializeField] protected float moveSpeed = 1.5f;   // ì´ë™ ì†ë„
+    [SerializeField] protected float moveDistance = 2.5f; // ì¢Œìš° ì´ë™ ë²”ìœ„
+
+    [HideInInspector] public bool isCaught = false;
+
+    // ë‚´ë¶€ ì»´í¬ë„ŒíŠ¸
     protected Rigidbody2D rigid;
     protected SpriteRenderer spriteRenderer;
+
+    // ì´ë™ ê´€ë ¨
     protected bool isMovingRight = true;
     protected Vector3 startPos;
 
-    public bool isCaught = false;
-
-    protected void Awake()
+    private void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         startPos = transform.position;
+
+        // fishName ìë™ ì§€ì • (enum ì´ë¦„ê³¼ ì¼ì¹˜ì‹œí‚´)
+        if (string.IsNullOrEmpty(fishName))
+            fishName = fishType.ToString();
     }
 
     private void OnEnable()
     {
         isCaught = false;
+        startPos = transform.position;
     }
 
-    protected void FixedUpdate()
+    private void FixedUpdate()
     {
+        if (isCaught) return; // ì¡íŒ ìƒíƒœë©´ ì›€ì§ì´ì§€ ì•Šê²Œ
+
         float moveDir = isMovingRight ? 1f : -1f;
         rigid.linearVelocity = new Vector2(moveDir * moveSpeed, rigid.linearVelocity.y);
 
@@ -47,38 +63,31 @@ public class Fish : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ì‘ì‚´ì— ë§ì•˜ì„ ë•Œ í˜¸ì¶œë¨ (HarpoonTip â†’ OceanManagerë¡œ ì²˜ë¦¬)
+    /// </summary>
     public void OnHitByHarpoon()
     {
-        // 1?. ÇöÀç ¹°°í±â ½ºÇÁ¶óÀÌÆ® °¡Á®¿À±â
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Sprite fishSprite = sr != null ? sr.sprite : null;
-
-        //// 2?.  UI ÂÊ¿¡ ¸ÕÀú Àü´Ş
-        //if (fishSprite != null)
-        //{
-        //    FindObjectOfType<FishInventoryManager>().AddFish(fishSprite);
-        //}
-        //else
-        //{
-        //    Debug.LogWarning($"{name}ÀÇ SpriteRenderer¸¦ Ã£Áö ¸øÇØ¼­ UI Ç¥½Ã ºÒ°¡");
-        //}
-
-        //if (!string.IsNullOrEmpty(fishName))
-        //{
-        //    //FishInventory.Instance.AddFish(fishName);
-        //    //Debug.Log($"{fishName} ÀâÀ½! ÇöÀç ¼ö·®: {FishInventory.Instance.GetFishCount(fishName)}");
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("fishNameÀÌ ºñ¾î ÀÖ¾î¼­ ÀÎº¥Åä¸®¿¡ µî·Ï ¾È µÊ");
-        //}
-
+        isCaught = true;
+        rigid.linearVelocity = Vector2.zero;
         StartCoroutine(Vanish());
+        Debug.Log($"[Fish] {fishName} ì¡í˜ â†’ ë¹„í™œì„±í™” ì˜ˆì •");
     }
 
+    /// <summary>
+    /// í”¼ê²© í›„ ë¹„í™œì„±í™” ì—°ì¶œ
+    /// </summary>
     protected IEnumerator Vanish()
     {
         yield return new WaitForSeconds(0.2f);
         gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// OceanManagerë¡œ ì „ë‹¬í•  ê³ ì • ì´ë¦„ ë°˜í™˜
+    /// </summary>
+    public string GetFishName()
+    {
+        return fishName;
     }
 }

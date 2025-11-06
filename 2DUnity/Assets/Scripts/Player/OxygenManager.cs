@@ -1,66 +1,87 @@
-using JetBrains.Annotations;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class OxygenManager : MonoBehaviour
 {
-    [Header("»ê¼Ò °ÔÀÌÁö ¼³Á¤")]
+    [Header("ì‚°ì†Œ ê²Œì´ì§€ ì„¤ì •")]
     [SerializeField] private float maxOxygen = 99;
-    [SerializeField] private float currentOxyen;
+    [SerializeField] private float currentOxygen;
 
-    [Header("UI ¿¬°á")]
+    [Header("UI ì—°ê²°")]
     [SerializeField] private Slider oxygenSlider;
 
     private bool isActive = true;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isSequenceRunning = false; // ì¶”ê°€: ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€
+    private OxygenWarningUI warningUI;
+
+    public void SetWarningUI(OxygenWarningUI ui)
+    {
+        warningUI = ui;
+    }
+
     void Start()
     {
-        currentOxyen = maxOxygen;
+        currentOxygen = maxOxygen;
+
         if (oxygenSlider != null)
         {
             oxygenSlider.maxValue = maxOxygen;
-            oxygenSlider.value = currentOxyen;
+            oxygenSlider.value = currentOxygen;
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (!isActive) return;
+        if (!isActive || isSequenceRunning) return;
 
-        currentOxyen -= Time.deltaTime;
+        currentOxygen -= Time.deltaTime;
+
         if (oxygenSlider != null)
-        {
-            oxygenSlider.value = currentOxyen;
-        }
+            oxygenSlider.value = currentOxygen;
 
-        if (currentOxyen <= 0)
+        if (currentOxygen <= 0)
         {
-            currentOxyen = 0;
+            currentOxygen = 0;
             isActive = false;
-            Debug.Log("»ê¼Ò°¡ ºÎÁ·ÇÕ´Ï´Ù. Áö»óÀ¸·Î ±ÍÈ¯ÇÕ´Ï´Ù.");
 
-            SceneryManager sceneryManager = FindObjectOfType<SceneryManager>();
-            if(sceneryManager != null)
-            {
-                sceneryManager.LoadScene(0); // 0Àº Áö»ó ¾ÀÀÇ ºôµå ÀÎµ¦½º¶ó°í °¡Á¤
-            }
-            else
-            {
-                Debug.LogWarning("SceneryManager¸¦ Ã£À» ¼ö ¾øÀ½.");
-            }
-            
+            if (!isSequenceRunning)
+                StartCoroutine(OxygenDepletedSequence());
         }
+    }
+
+    private IEnumerator OxygenDepletedSequence()
+    {
+        isSequenceRunning = true;
+        Debug.Log("ì‚°ì†Œ ë¶€ì¡± â†’ ê²½ê³ ì°½ + í˜ì´ë“œì•„ì›ƒ ì‹œí€€ìŠ¤ ì‹¤í–‰");
+
+        // ì¸ë²¤í† ë¦¬ ë¹„í™œì„±í™”
+        InventoryUI inventoryUI = FindObjectOfType<InventoryUI>();
+        if (inventoryUI != null)
+            inventoryUI.gameObject.SetActive(false);
+
+        // ê²½ê³  UI ì‹¤í–‰
+        if (warningUI != null)
+        {
+            yield return StartCoroutine(warningUI.ShowWarningThenFadeOut());
+        }
+        else
+        {
+            Debug.LogWarning("âš ï¸ warningUIê°€ ì—°ê²°ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!");
+        }
+
+        // UI ë‹¤ ëë‚œ ë’¤ ë¹„í™œì„±í™”
+        yield return new WaitForSeconds(0.1f);
+        isSequenceRunning = false;
     }
 
     public void ResetOxygen()
     {
-        currentOxyen = maxOxygen;
+        currentOxygen = maxOxygen;
         if (oxygenSlider != null)
-        {
-            oxygenSlider.value = currentOxyen;
-        }
+            oxygenSlider.value = currentOxygen;
+
         isActive = true;
+        isSequenceRunning = false;
     }
 }

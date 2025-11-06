@@ -15,7 +15,7 @@ public class FishSpawner : MonoBehaviour
         StartCoroutine(FishSpawn());
     }
 
-    private IEnumerator FishSpawn()
+    public IEnumerator FishSpawn()
     {
         while (true)
         {

@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class HarpoonTip : MonoBehaviour
 {
@@ -9,6 +9,13 @@ public class HarpoonTip : MonoBehaviour
     private Vector3 direction;
     private HarpoonPool pool;
 
+    // üîπ HarpoonPoolÏóêÏÑú Ïó∞Í≤∞Ìï† Îïå Ìò∏Ï∂úÎê®
+    public void SetPool(HarpoonPool poolRef)
+    {
+        pool = poolRef;
+    }
+
+    // üîπ ÏûëÏÇ¥ Î∞úÏÇ¨ Ïãú Ï¥àÍ∏∞Ìôî
     public void Fire(Vector3 dir, HarpoonPool poolRef)
     {
         startPos = transform.position;
@@ -22,14 +29,14 @@ public class HarpoonTip : MonoBehaviour
 
         if (Vector3.Distance(startPos, transform.position) >= maxDistance)
         {
-            pool.ReturnHarpoon(gameObject);
+            pool?.ReturnHarpoon(gameObject);
         }
     }
 
-    public void SetPool(HarpoonPool poolRef)
+    void OnEnable()
     {
-        pool = poolRef;
-        startPos = transform.position; // Ω√¿€ ¿ßƒ° ¿˙¿Â
+        Collider2D col = GetComponent<Collider2D>();
+        if (col != null) col.enabled = true;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -38,59 +45,50 @@ public class HarpoonTip : MonoBehaviour
 
         if (collision.CompareTag("Fish"))
         {
-            Debug.Log("Fish hit.");
-            Debug.Log("√Êµπ«— ø¿∫Í¡ß∆Æ ¿Ã∏ß: " + collision.gameObject.name);
-
             Fish fish = collision.GetComponent<Fish>();
-            if (fish != null)
+            if (fish == null) return;
+            if (fish.isCaught) return;
+
+            fish.isCaught = true;
+            string fishName = fish.fishType.ToString();
+
+            SpriteRenderer sr = collision.GetComponent<SpriteRenderer>();
+            Sprite fishSprite = sr != null ? sr.sprite : null;
+
+            Debug.Log($"üéØ [HarpoonTip] {fishName} Ïû°Ïùå!");
+
+            OceanManager oceanManager = FindObjectOfType<OceanManager>();
+            if (oceanManager != null)
             {
-                // π∞∞Ì±‚ ø¿∫Í¡ß∆Æ¿« SpriteRenderer ∞°¡Æø¿±‚
-                if (fish.isCaught)
+                try
                 {
-                    return;
+                    oceanManager.AddCaughtFish(fishName);
                 }
-
-                fish.isCaught = true;
-
-                SpriteRenderer sr = collision.GetComponent<SpriteRenderer>();
-                Sprite fishSprite = (sr != null) ? sr.sprite : null;
-
-                Debug.Log($"[Harpoon] ¿‚¿∫ π∞∞Ì±‚ Ω∫«¡∂Û¿Ã∆Æ: {fishSprite.name}");
-                FishInventoryManager manager = FindObjectOfType<FishInventoryManager>();
-                if (manager != null)
-                    manager.AddFish(fish.fishType, fishSprite);
-
-
-                // Ω«¡¶ ««∞› √≥∏Æ
-                fish.OnHitByHarpoon();
+                catch (System.Exception e)
+                {
+                    Debug.LogError($"[HarpoonTip] AddCaughtFish Ïã§Ìå®: {e.Message}");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("[HarpoonTip] OceanManagerÎ•º Ï∞æÏùÑ Ïàò ÏóÜÏùå");
             }
 
-            // √Êµπ ¡˜»ƒ ƒ›∂Û¿Ã¥ı ∫Ò»∞º∫»≠
-            Collider2D col = GetComponent<Collider2D>();
-            if (col != null)
-                col.enabled = false;
+            fish.OnHitByHarpoon();
 
-            // ¿€ªÏ »∏ºˆ ≈∏¿Ãπ÷ æ‡∞£ µÙ∑π¿Ã
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null) col.enabled = false;
+
             Invoke(nameof(ReturnToPool), 0.1f);
         }
         else
         {
-            // ∫Æ µÓø° ∫Œµ˙»˘ ∞ÊøÏ ¡ÔΩ√ »∏ºˆ
-            pool.ReturnHarpoon(gameObject);
+            pool?.ReturnHarpoon(gameObject);
         }
-
     }
 
     private void ReturnToPool()
     {
-        if (pool != null)
-            pool.ReturnHarpoon(gameObject);
+        pool?.ReturnHarpoon(gameObject);
     }
-
-    void OnEnable()
-    {
-        var col = GetComponent<Collider2D>();
-        if (col != null) col.enabled = true;
-    }
-
 }

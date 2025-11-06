@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   harpoon: {fileID: 2808003809515234217}
-  speed: 2.5
+  speed: 4
 --- !u!114 &651324597514422601
 MonoBehaviour:
   m_ObjectHideFlags: 0

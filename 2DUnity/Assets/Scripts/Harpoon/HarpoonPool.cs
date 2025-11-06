@@ -3,26 +3,46 @@ using UnityEngine;
 
 public class HarpoonPool : MonoBehaviour
 {
+    [Header("풀 설정")]
     [SerializeField] private int poolSize = 5;
     [SerializeField] private GameObject harpoonTipPrefab;
 
-    private Queue<GameObject> pool = new Queue<GameObject>();
+    private readonly Queue<GameObject> pool = new Queue<GameObject>();
 
     void Start()
     {
+        if (harpoonTipPrefab == null)
+        {
+            Debug.LogError("[HarpoonPool] harpoonTipPrefab이 비어있습니다!");
+            return;
+        }
+
+        // 최초 풀 생성
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject obj = Instantiate(harpoonTipPrefab, transform);
-
-            HarpoonTip tip = obj.GetComponent<HarpoonTip>();
-            if (tip != null)
-                tip.SetPool(this);
-
+            GameObject obj = CreateNewHarpoon();
             obj.SetActive(false);
             pool.Enqueue(obj);
         }
+
+        Debug.Log($"[HarpoonPool] 풀 초기화 완료 ({poolSize}개)");
     }
 
+    // 새 작살 생성 함수 (반복 코드 정리)
+    private GameObject CreateNewHarpoon()
+    {
+        GameObject obj = Instantiate(harpoonTipPrefab, transform);
+        HarpoonTip tip = obj.GetComponent<HarpoonTip>();
+
+        if (tip != null)
+            tip.SetPool(this);
+        else
+            Debug.LogWarning("[HarpoonPool] HarpoonTip 컴포넌트를 찾을 수 없습니다!");
+
+        return obj;
+    }
+
+    // 작살 요청
     public GameObject GetHarpoon()
     {
         GameObject obj;
@@ -33,21 +53,33 @@ public class HarpoonPool : MonoBehaviour
         }
         else
         {
-            obj = Instantiate(harpoonTipPrefab, transform);
-
-            // 새로 생성한 작살에는 HarpoonPool 정보가 없으므로 넣어줘야 함
-            HarpoonTip tip = obj.GetComponent<HarpoonTip>();
-            if (tip != null)
-                tip.SetPool(this);
+            Debug.LogWarning("[HarpoonPool] 풀 부족! 새 작살 생성");
+            obj = CreateNewHarpoon();
         }
 
         obj.SetActive(true);
         return obj;
     }
 
+    // 작살 반환
     public void ReturnHarpoon(GameObject obj)
     {
+        if (obj == null)
+        {
+            Debug.LogWarning("[HarpoonPool] 반환 시 null 오브젝트 감지");
+            return;
+        }
+
         obj.SetActive(false);
-        pool.Enqueue(obj);
+
+        // 중복 반환 방지
+        if (!pool.Contains(obj))
+        {
+            pool.Enqueue(obj);
+        }
+        else
+        {
+            Debug.LogWarning("[HarpoonPool] 이미 풀에 존재하는 작살을 다시 반환하려 함");
+        }
     }
 }
