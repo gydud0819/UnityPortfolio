@@ -54,12 +54,6 @@ public class OxygenManager : MonoBehaviour
         }
     }
 
-    void ReturnToLand()
-    {
-        SceneManager.LoadScene("Land");
-
-    }
-
     public void ResetOxygen()
     {
         currentOxyen = maxOxygen;

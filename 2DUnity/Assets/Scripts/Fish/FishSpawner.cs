@@ -8,7 +8,7 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> fishPrefabs;
     [SerializeField] private float fishInterval = 2f;
     [SerializeField] private float fishSpawnX = 5f;
-    [SerializeField] private float fishSpawnY = 1f;
+    [SerializeField] private float fishSpawnY = -10f;
 
     private void Start()
     {
