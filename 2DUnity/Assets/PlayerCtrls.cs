@@ -94,7 +94,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""fishType"": ""Value"",
+                    ""type"": ""Value"",
                     ""id"": ""34cc003b-2d58-4914-a591-60f2013d7e7c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -103,7 +103,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Hold"",
-                    ""fishType"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""3992e6ab-f804-4c94-902c-b8f00d6f4550"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -112,7 +112,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Fire"",
-                    ""fishType"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""40ff99ee-5085-48c4-b4d8-133bd183d78b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -121,7 +121,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Inventory"",
-                    ""fishType"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""1c452497-b65a-4be1-8420-dfe5af725b21"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -130,7 +130,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Storage"",
-                    ""fishType"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""f818ab5f-acb7-4317-a883-1aa72fe5576e"",
                     ""expectedControlType"": """",
                     ""processors"": """",

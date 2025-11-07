@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    [SerializeField] public FishInventoryData sharedInventoryData;
 
-    [SerializeField] private FishInventoryData fishInventoryData;
     [Header("슬롯 부모 오브젝트")]
     [SerializeField] private GameObject inventoryPanelRoot; // Inventory Bar 연결
     [SerializeField] private Transform quickbarParent;      // Q Content
@@ -18,12 +18,18 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private int quickbarSize = 9;
     [SerializeField] private int inventorySize = 27;
 
-    private List<UISlot> quickbarSlots = new List<UISlot>();
-    private List<UISlot> inventorySlots = new List<UISlot>();
+    private List<UISlot> quickbarSlots = new();
+    private List<UISlot> inventorySlots = new();
 
     private PlayerCtrls playerCtrls;
-
     private bool isInventoryOpen = false;
+
+    // ? GameManager에서 공용 데이터 직접 주입할 수 있도록
+    public void SetInventoryData(FishInventoryData data)
+    {
+        sharedInventoryData = data;
+        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ({data.GetHashCode()})");
+    }
 
     private void Awake()
     {
@@ -41,24 +47,19 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
-        // 인벤토리 패널 잠시 켜서 레이아웃 계산하게 하기
         inventoryPanelRoot.SetActive(true);
 
         CreateSlots(quickbarParent, quickbarSlots, quickbarSize);
         CreateSlots(inventoryParent, inventorySlots, inventorySize);
 
-        // 다 만든 다음 전체 패널 비활성화
         inventoryPanelRoot.SetActive(false);
     }
 
     private void ToggleInventory()
     {
-        Debug.Log("인벤토리 감지됨");
         isInventoryOpen = !isInventoryOpen;
-
-        // 슬롯이 아니라 부모 패널(Inventory Bar)을 켜고 꺼야 함
         inventoryPanelRoot.SetActive(isInventoryOpen);
     }
 
@@ -71,60 +72,59 @@ public class InventoryUI : MonoBehaviour
             list.Add(slot);
         }
 
-        // 생성 후 강제 레이아웃 리빌드
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
     }
 
+    // ?? 물고기 추가
     public void AddItemToUI(FishType fish, Sprite fishIcon)
     {
         if (fishIcon == null) return;
 
-        // 퀵바에서 같은 물고기 찾기 (이름으로 비교)
+        // 데이터에도 바로 반영
+        sharedInventoryData?.AddFish(fish, fishIcon);
+
+        // 퀵바 먼저 채우기
         foreach (UISlot slot in quickbarSlots)
         {
             if (!slot.IsEmpty && slot.FishType == fish)
             {
                 slot.AddCount();
-                Debug.Log($"[InventoryUI] 동일 물고기({fishIcon.name}) → 퀵바 수량 증가");
+                Debug.Log($"[InventoryUI] {fish} → 퀵바 수량 증가");
                 return;
             }
         }
 
-        // 퀵바 빈 칸에 새로 추가
         foreach (UISlot slot in quickbarSlots)
         {
             if (slot.IsEmpty)
             {
                 slot.SetItem(fishIcon, fish);
-                Debug.Log($"[InventoryUI] {fishIcon.name} → 퀵바 새 슬롯 추가");
+                Debug.Log($"[InventoryUI] {fish} → 퀵바 새 슬롯 추가");
                 return;
             }
         }
 
-        // 인벤토리에서 같은 물고기 찾기
+        // 인벤토리 슬롯
         foreach (UISlot slot in inventorySlots)
         {
             if (!slot.IsEmpty && slot.FishType == fish)
             {
                 slot.AddCount();
-                Debug.Log($"[InventoryUI] 동일 물고기({fishIcon.name}) → 인벤토리 수량 증가");
+                Debug.Log($"[InventoryUI] {fish} → 인벤토리 수량 증가");
                 return;
             }
         }
 
-        // 인벤토리 빈 칸에 추가
         foreach (UISlot slot in inventorySlots)
         {
             if (slot.IsEmpty)
             {
                 slot.SetItem(fishIcon, fish);
-                Debug.Log($"[InventoryUI] {fishIcon.name} → 인벤토리 새 슬롯 추가");
+                Debug.Log($"[InventoryUI] {fish} → 인벤토리 새 슬롯 추가");
                 return;
             }
         }
 
-        Debug.Log("인벤토리가 가득 찼습니다.");
+        Debug.LogWarning("인벤토리가 가득 찼습니다 ?");
     }
-
-
 }

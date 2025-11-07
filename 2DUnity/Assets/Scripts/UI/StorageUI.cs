@@ -1,126 +1,85 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StorageUI : MonoBehaviour
 {
-    [SerializeField] private FishInventoryData sharedInventoryData;
-    [Header("슬롯 부모 오브젝트")]
-    [SerializeField] private GameObject inventoryPanelRoot; // Inventory Bar 연결
-    [SerializeField] private Transform inventoryParent;     // I Content
-
-    [Header("슬롯 프리팹")]
+    [SerializeField] private FishInventoryData sharedInventoryData; // ? 공용 데이터
+    [SerializeField] private Transform inventoryParent;
     [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private List<FishType> slotFishOrder;
+    [SerializeField] private int totalSlots = 27;
 
-    [Header("슬롯 개수")]
-    [SerializeField] private int inventorySize = 27;
+    private Dictionary<FishType, UISlot> slotMap = new();
+    private List<UISlot> allSlots = new();
 
-    private List<UISlot> inventorySlots = new List<UISlot>();
-
-    private PlayerCtrls playerCtrls;
-
-    private bool isInventoryOpen = false;
+    public void SetInventoryData(FishInventoryData data)
+    {
+        sharedInventoryData = data;
+        Debug.Log($"[StorageUI] sharedInventoryData 주입 완료 ({data.GetHashCode()})");
+    }
 
     private void Awake()
     {
-        playerCtrls = new PlayerCtrls();
-        playerCtrls.Player.Inventory.performed += _ => ToggleStorage();
-        playerCtrls.Enable();
+        CreateSlots();
+        LoadFishData();
     }
 
-    private void OnDisable()
+    private void CreateSlots()
     {
-        if (playerCtrls != null)
+        for (int i = 0; i < totalSlots; i++)
         {
-            playerCtrls.Player.Inventory.performed -= _ => ToggleStorage();
-            playerCtrls.Disable();
-        }
-    }
-
-    void Start()
-    {
-        // 인벤토리 패널 잠시 켜서 레이아웃 계산하게 하기
-        inventoryPanelRoot.SetActive(true);
-
-        CreateSlots(inventoryParent, inventorySlots, inventorySize);
-
-        // 다 만든 다음 전체 패널 비활성화
-        inventoryPanelRoot.SetActive(false);
-
-       
-    }
-
-    private void ToggleStorage()
-    {
-        Debug.Log("인벤토리 감지됨");
-        isInventoryOpen = !isInventoryOpen;
-
-        // 슬롯이 아니라 부모 패널(Inventory Bar)을 켜고 꺼야 함
-        inventoryPanelRoot.SetActive(isInventoryOpen);
-
-       
-    }
-
-    private void OnEsc()
-    {
-        if(isInventoryOpen)
-        {
-            inventoryPanelRoot.SetActive(false);
-            isInventoryOpen = true;
-        }
-    }
-
-    private void CreateSlots(Transform parent, List<UISlot> list, int size)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            GameObject newSlot = Instantiate(slotPrefab, parent);
+            GameObject newSlot = Instantiate(slotPrefab, inventoryParent);
             UISlot slot = newSlot.GetComponent<UISlot>();
-            list.Add(slot);
+            allSlots.Add(slot);
         }
 
-        // 생성 후 강제 레이아웃 리빌드
-        UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
+        for (int i = 0; i < slotFishOrder.Count && i < allSlots.Count; i++)
+        {
+            slotMap[slotFishOrder[i]] = allSlots[i];
+            Debug.Log($"[StorageUI] {slotFishOrder[i]} → {i + 1}번 슬롯 매핑 완료 ?");
+        }
+
+        Debug.Log($"[StorageUI] 총 {slotMap.Count}/{totalSlots} 슬롯 매핑 완료");
     }
 
-    public void AddItemToUI(FishType fish, Sprite fishIcon)
+    public void LoadFishData()
     {
-        if (fishIcon == null) return;
-
-        // 인벤토리에서 같은 물고기 찾기
-        foreach (UISlot slot in inventorySlots)
+        if (sharedInventoryData == null)
         {
-            if (!slot.IsEmpty && slot.FishType == fish)
-            {
-                slot.AddCount();
-                Debug.Log($"[InventoryUI] 동일 물고기({fishIcon.name}) → 인벤토리 수량 증가");
-                return;
-            }
+            Debug.LogWarning("[StorageUI] sharedInventoryData가 비어 있음 ?");
+            return;
         }
 
-        // 인벤토리 빈 칸에 추가
-        foreach (UISlot slot in inventorySlots)
-        {
-            if (slot.IsEmpty)
-            {
-                slot.SetItem(fishIcon, fish);
-                Debug.Log($"[InventoryUI] {fishIcon.name} → 인벤토리 새 슬롯 추가");
-                return;
-            }
-        }
+        Debug.Log($"[StorageUI] 불러오기: {sharedInventoryData.caughtFishList.Count}마리");
 
-        Debug.Log("인벤토리가 가득 찼습니다.");
-    }
-
-    private void LoadFishData()
-    {
         foreach (var fish in sharedInventoryData.caughtFishList)
         {
-            for (int i = 0; i < fish.count; i++)
+            Sprite icon = fish.fishIcon;
+            if (icon == null)
             {
-                AddItemToUI(fish.fishType, fish.fishIcon);
+                string path = $"Fish/{fish.fishType}";
+                Sprite[] sprites = Resources.LoadAll<Sprite>(path);
+                if (sprites.Length > 0)
+                    icon = sprites[0];
+            }
+
+            if (slotMap.TryGetValue(fish.fishType, out UISlot slot))
+            {
+                slot.SetItem(icon, fish.fishType);
+                Debug.Log($"[StorageUI] {fish.fishType} → 도감형 슬롯 표시 ?");
+            }
+            else
+            {
+                UISlot emptySlot = allSlots.Find(s => s.IsEmpty && !slotMap.ContainsValue(s));
+                if (emptySlot != null)
+                {
+                    emptySlot.SetItem(icon, fish.fishType);
+                    Debug.Log($"[StorageUI] {fish.fishType} → 여분 슬롯 표시 ?");
+                }
             }
         }
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(inventoryParent.GetComponent<RectTransform>());
     }
 }

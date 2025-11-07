@@ -29,9 +29,13 @@ public class UISlot : MonoBehaviour
 
         if (itemIcon != null)
         {
-            itemIcon.sprite = icon;
             itemIcon.enabled = true;
+            itemIcon.sprite = icon;
+            Debug.Log($"[UISlot] {type} 슬롯 아이콘 적용됨? {(icon != null ? icon.name : "? NULL")}"); // ? 추가
         }
+
+        var rt = itemIcon.rectTransform;
+        Debug.Log($"[UISlot] {type} 슬롯 아이콘 적용됨? {(icon != null ? icon.name : "? NULL")} / 크기={rt.sizeDelta} / 활성={itemIcon.enabled}");
 
         UpdateCountText();
     }
@@ -70,5 +74,12 @@ public class UISlot : MonoBehaviour
 
         if (countText != null)
             countText.text = "";
+    }
+
+    public void SetCount(int newCount)
+    {
+        count = newCount;
+        isEmpty = count <= 0;
+        UpdateCountText();
     }
 }

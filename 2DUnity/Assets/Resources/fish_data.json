@@ -56,12 +56,12 @@
             "description": "자동 생성된 물고기입니다."
         },
         {
-            "fishName": "Shrimp - 16x32",
+            "fishName": "Shrimp",
             "worldSpritePath": "Fish/Shrimp",
             "description": "자동 생성된 물고기입니다."
         },
         {
-            "fishName": "Squid - 32x16",
+            "fishName": "Squid",
             "worldSpritePath": "Fish/Squid",
             "description": "자동 생성된 물고기입니다."
         },
