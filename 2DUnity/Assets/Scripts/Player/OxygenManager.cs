@@ -12,13 +12,7 @@ public class OxygenManager : MonoBehaviour
     [SerializeField] private Slider oxygenSlider;
 
     private bool isActive = true;
-    private bool isSequenceRunning = false; // 추가: 중복 실행 방지
-    private OxygenWarningUI warningUI;
-
-    public void SetWarningUI(OxygenWarningUI ui)
-    {
-        warningUI = ui;
-    }
+    private bool isSequenceRunning = false;
 
     void Start()
     {
@@ -53,25 +47,37 @@ public class OxygenManager : MonoBehaviour
     private IEnumerator OxygenDepletedSequence()
     {
         isSequenceRunning = true;
-        Debug.Log("산소 부족 → 경고창 + 페이드아웃 시퀀스 실행");
+        Debug.Log("산소 부족 → 바로 육지로 전환");
 
-        // 인벤토리 비활성화
-        InventoryUI inventoryUI = FindObjectOfType<InventoryUI>();
-        if (inventoryUI != null)
-            inventoryUI.gameObject.SetActive(false);
-
-        // 경고 UI 실행
-        if (warningUI != null)
+        // 인벤토리 삭제
+        var inv = GameObject.Find("InventoryCanvas(Clone)");
+        if (inv != null)
         {
-            yield return StartCoroutine(warningUI.ShowWarningThenFadeOut());
+            Object.DestroyImmediate(inv);
+            Debug.Log("[OxygenManager] 인벤토리 즉시 삭제 완료");
+        }
+
+        // 산소 게이지 삭제
+        var oxy = GameObject.Find("OxygenUI(Clone)");
+        if (oxy != null)
+        {
+            Object.DestroyImmediate(oxy);
+            Debug.Log("[OxygenManager] 산소UI 즉시 삭제 완료");
+        }
+
+        // Land로 이동
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GoToFadeScene();
         }
         else
         {
-            Debug.LogWarning("⚠️ warningUI가 연결되지 않았습니다!");
+            Debug.LogWarning("[OxygenManager] GameManager.Instance 없음 → 직접 Land로 이동");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Land");
         }
-
-        // UI 다 끝난 뒤 비활성화
+        // 잠깐 텀 (자연스러운 전환)
         yield return new WaitForSeconds(0.1f);
+
         isSequenceRunning = false;
     }
 

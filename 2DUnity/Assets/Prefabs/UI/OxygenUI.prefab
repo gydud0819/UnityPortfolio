@@ -351,8 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76be81c9e6586144bb66f252058430fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxOxygen: 100
-  currentOxyen: 0
+  maxOxygen: 30
+  currentOxygen: 0
   oxygenSlider: {fileID: 9022820529538604186}
 --- !u!1 &8877439394706866139
 GameObject:

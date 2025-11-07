@@ -94,7 +94,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""fishType"": ""Value"",
                     ""id"": ""34cc003b-2d58-4914-a591-60f2013d7e7c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -103,7 +103,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Hold"",
-                    ""type"": ""Button"",
+                    ""fishType"": ""Button"",
                     ""id"": ""3992e6ab-f804-4c94-902c-b8f00d6f4550"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -112,7 +112,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Fire"",
-                    ""type"": ""Button"",
+                    ""fishType"": ""Button"",
                     ""id"": ""40ff99ee-5085-48c4-b4d8-133bd183d78b"",
                     ""expectedControlType"": """",
                     ""processors"": """",
@@ -121,8 +121,17 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Inventory"",
-                    ""type"": ""Button"",
+                    ""fishType"": ""Button"",
                     ""id"": ""1c452497-b65a-4be1-8420-dfe5af725b21"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Storage"",
+                    ""fishType"": ""Button"",
+                    ""id"": ""f818ab5f-acb7-4317-a883-1aa72fe5576e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -217,6 +226,17 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
                     ""action"": ""Inventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c4a6b0b-5efc-444a-a6c7-c73586ba108b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Storage"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -229,6 +249,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
         m_Player_Hold = m_Player.FindAction("Hold", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
+        m_Player_Storage = m_Player.FindAction("Storage", throwIfNotFound: true);
     }
 
     ~@PlayerCtrls()
@@ -313,6 +334,7 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Hold;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Inventory;
+    private readonly InputAction m_Player_Storage;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -340,6 +362,10 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Inventory".
         /// </summary>
         public InputAction @Inventory => m_Wrapper.m_Player_Inventory;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Storage".
+        /// </summary>
+        public InputAction @Storage => m_Wrapper.m_Player_Storage;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -378,6 +404,9 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
             @Inventory.started += instance.OnInventory;
             @Inventory.performed += instance.OnInventory;
             @Inventory.canceled += instance.OnInventory;
+            @Storage.started += instance.OnStorage;
+            @Storage.performed += instance.OnStorage;
+            @Storage.canceled += instance.OnStorage;
         }
 
         /// <summary>
@@ -401,6 +430,9 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
             @Inventory.started -= instance.OnInventory;
             @Inventory.performed -= instance.OnInventory;
             @Inventory.canceled -= instance.OnInventory;
+            @Storage.started -= instance.OnStorage;
+            @Storage.performed -= instance.OnStorage;
+            @Storage.canceled -= instance.OnStorage;
         }
 
         /// <summary>
@@ -469,5 +501,12 @@ public partial class @PlayerCtrls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnInventory(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Storage" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnStorage(InputAction.CallbackContext context);
     }
 }

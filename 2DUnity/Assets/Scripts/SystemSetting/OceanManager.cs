@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class OceanManager : MonoBehaviour
 {
@@ -16,6 +18,13 @@ public class OceanManager : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(LateStart());
+    }
+
+    private IEnumerator LateStart()
+    {
+        yield return null;
+
         // 물고기 스폰 초기화
         if (fishSpawner != null)
             fishSpawner.FishSpawn();
@@ -24,16 +33,6 @@ public class OceanManager : MonoBehaviour
         if (oxygenManager != null)
         {
             oxygenManager.ResetOxygen();
-
-            if (warningUI != null)
-            {
-                oxygenManager.SetWarningUI(warningUI);
-                Debug.Log("[OceanManager] OxygenManager에 warningUI 연결 완료 ✅");
-            }
-            else
-            {
-                Debug.LogWarning("[OceanManager] warningUI가 없습니다 ❌");
-            }
         }
     }
 

@@ -55,7 +55,7 @@ public class HarpoonTip : MonoBehaviour
             SpriteRenderer sr = collision.GetComponent<SpriteRenderer>();
             Sprite fishSprite = sr != null ? sr.sprite : null;
 
-            Debug.Log($"🎯 [HarpoonTip] {fishName} 잡음!");
+            Debug.Log($"[HarpoonTip] {fishName} 잡음!");
 
             OceanManager oceanManager = FindObjectOfType<OceanManager>();
             if (oceanManager != null)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+
+    [SerializeField] private FishInventoryData fishInventoryData;
     [Header("슬롯 부모 오브젝트")]
     [SerializeField] private GameObject inventoryPanelRoot; // Inventory Bar 연결
     [SerializeField] private Transform quickbarParent;      // Q Content
@@ -28,6 +30,15 @@ public class InventoryUI : MonoBehaviour
         playerCtrls = new PlayerCtrls();
         playerCtrls.Player.Inventory.performed += _ => ToggleInventory();
         playerCtrls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        if (playerCtrls != null)
+        {
+            playerCtrls.Player.Inventory.performed -= _ => ToggleInventory();
+            playerCtrls.Disable();
+        }
     }
 
     void Start()
@@ -115,5 +126,5 @@ public class InventoryUI : MonoBehaviour
         Debug.Log("인벤토리가 가득 찼습니다.");
     }
 
- 
+
 }

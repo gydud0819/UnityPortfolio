@@ -31,10 +31,10 @@ public class OxygenWarningUI : MonoBehaviour
             yield return null;
         }
 
-        // 🔹 경고 문구 표시 유지
+        // 경고 문구 표시 유지
         yield return new WaitForSeconds(displayDuration);
 
-        // 🔹 페이드아웃
+        // 페이드아웃
         t = 0f;
         while (t < fadeDuration)
         {
@@ -43,11 +43,11 @@ public class OxygenWarningUI : MonoBehaviour
             yield return null;
         }
 
-        // 🔹 완전히 꺼진 후 비활성화
+        // 완전히 꺼진 후 비활성화
         canvasGroup.alpha = 0;
         gameObject.SetActive(false);
 
-        // 🔹 페이드씬 전환 (이제 완전히 끝난 뒤 호출됨)
+        // 페이드씬 전환 (이제 완전히 끝난 뒤 호출됨)
         yield return new WaitForSeconds(0.3f); // 약간의 여유
         if (GameManager.Instance != null)
         {

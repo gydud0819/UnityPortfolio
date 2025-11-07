@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -32,19 +33,12 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (scene.name == "Ocean")
-        {
-            SetupOceanScene();
-        }
-        else if (scene.name == "Land")
-        {
-            SetupLandScene();
-        }
+        StartCoroutine(SetupSceneDelayed(scene));
     }
 
     private void SetupOceanScene()
     {
-        // 🌊 Ocean씬 초기화
+        // Ocean씬 초기화
         oceanMapInstance = Instantiate(oceanMapPrefab);
         playerInstance = Instantiate(playerPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
@@ -52,16 +46,18 @@ public class GameManager : MonoBehaviour
         GameObject oxyUI = Instantiate(oxygenUIPrefab);
         GameObject invUI = Instantiate(inventoryUIPrefab);
         GameObject warnUI = Instantiate(warningUIPrefab);
-        warnUI.SetActive(false); // 경고창은 기본 비활성화
 
-        // 🐟 FishDataLoader 없으면 자동 생성
+        warnUI.transform.SetParent(null); // 씬 루트에 두기
+        warnUI.SetActive(false);
+
+        // FishDataLoader 없으면 자동 생성
         if (FindFirstObjectByType<FishDataLoader>() == null && fishDataLoaderPrefab != null)
         {
             Instantiate(fishDataLoaderPrefab);
             Debug.Log("[GameManager] FishDataLoader 인스턴스 생성 완료 ✅");
         }
 
-        // 🧭 OceanManager 연결
+        // OceanManager 연결
         OceanManager oceanManager = Object.FindFirstObjectByType<OceanManager>();
         if (oceanManager != null)
         {
@@ -73,7 +69,7 @@ public class GameManager : MonoBehaviour
             type.GetField("oxygenManager", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 ?.SetValue(oceanManager, oxyUI.GetComponent<OxygenManager>());
 
-            // 🎒 인벤토리 UI는 자식에서 찾아야 함
+            // 인벤토리 UI는 자식에서 찾아야 함
             var invUIComp = invUI.GetComponentInChildren<InventoryUI>(true);
             if (invUIComp == null)
                 Debug.LogError("[GameManager] InventoryUI를 InventoryCanvas에서 찾지 못했습니다!");
@@ -83,8 +79,8 @@ public class GameManager : MonoBehaviour
             type.GetField("inventoryUI", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
                 ?.SetValue(oceanManager, invUIComp);
 
-            type.GetField("warningUI", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
-                ?.SetValue(oceanManager, warnUI.GetComponent<OxygenWarningUI>());
+            //fishType.GetField("warningUI", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)
+            //    ?.SetValue(oceanManager, warnUI.GetComponent<OxygenWarningUI>());
 
             Debug.Log("[GameManager] OceanManager에 프리팹 참조 전달 완료 ✅");
         }
@@ -93,7 +89,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] OceanManager를 찾을 수 없습니다 ❌");
         }
 
-        // 📸 카메라 플레이어 추적
+        // 카메라 플레이어 추적
         CameraBound cam = FindFirstObjectByType<CameraBound>();
         if (cam != null)
         {
@@ -102,7 +98,8 @@ public class GameManager : MonoBehaviour
                .SetValue(cam, playerInstance.transform);
         }
 
-        Debug.Log("[GameManager] Ocean 씬 초기화 완료 🌊");
+        Debug.Log("[GameManager] Ocean 씬 초기화 완료 ");
+
     }
 
     private void SetupLandScene()
@@ -110,41 +107,45 @@ public class GameManager : MonoBehaviour
         Debug.Log("[GameManager] 육지씬 로드됨");
     }
 
-    // 🌊 바다로 이동
+    // 바다로 이동
     public void GoToOcean()
     {
         SceneManager.LoadScene("Ocean");
     }
 
-    // 🟩 육지로 바로 이동 (페이드 없이)
+    // 육지로 바로 이동 (페이드 없이)
     public void GoToLand()
     {
         SceneManager.LoadScene("Land");
     }
 
-    // 🟥 산소 0일 때 페이드씬 전환
+    // 산소 0일 때 페이드씬 전환
     public void GoToFadeScene()
     {
         Debug.Log("[GameManager] 산소 0 → 페이드씬으로 전환 요청");
 
         SceneryManager sceneryManager = FindObjectOfType<SceneryManager>();
+
+
         if (sceneryManager != null)
         {
-            int landSceneIndex = SceneUtility.GetBuildIndexByScenePath("Assets/Scenes/Land.unity");
-            if (landSceneIndex >= 0)
-            {
-                Debug.Log("[GameManager] 페이드씬 실행 → 육지로 이동 준비");
-                sceneryManager.LoadScene(landSceneIndex);
-            }
-            else
-            {
-                Debug.LogWarning("[GameManager] Land 씬 인덱스 찾을 수 없음! 빌드 세팅 확인 필요");
-            }
+            sceneryManager.LoadScene("Land");
         }
         else
         {
             Debug.LogWarning("[GameManager] SceneryManager가 없어 바로 Land로 이동합니다.");
-            SceneManager.LoadScene("Land");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Land");
         }
     }
+
+    private IEnumerator SetupSceneDelayed(Scene scene)
+    {
+        yield return null; // OceanManager Awake/Start 완료 대기
+
+        if (scene.name == "Ocean")
+            SetupOceanScene();
+        else if (scene.name == "Land")
+            SetupLandScene();
+    }
+
 }
