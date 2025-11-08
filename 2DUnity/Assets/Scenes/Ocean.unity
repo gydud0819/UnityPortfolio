@@ -571,7 +571,6 @@ MonoBehaviour:
   fishSpawner: {fileID: 0}
   oxygenManager: {fileID: 0}
   inventoryUI: {fileID: 0}
-  warningUI: {fileID: 0}
 --- !u!4 &1248915131
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1749279851
 Transform:
   m_ObjectHideFlags: 0
@@ -638,6 +637,8 @@ MonoBehaviour:
   inventoryUIPrefab: {fileID: 3679155371573781950, guid: a671c6e704cfca549916707cc4029ea3, type: 3}
   warningUIPrefab: {fileID: 189827198567176179, guid: b36d047030dd1f74d846a1bbc6bf97db, type: 3}
   fishDataLoaderPrefab: {fileID: 89068995838689660, guid: 26365a06b0292aa47a09bba381dc7bbe, type: 3}
+  storageUICanvasPrefab: {fileID: 1451193942501412059, guid: 4ecb0faf3d35c454abeb7bbf9a68c1d2, type: 3}
+  buttonCanvasPrefab: {fileID: 7081584503775255670, guid: db70d20ce8f85eb4ca15e2d26bb8ea8c, type: 3}
   sharedInventoryData: {fileID: 11400000, guid: fb120184e94b6014b9ed4c1eea48b740, type: 2}
 --- !u!1001 &1780070038
 PrefabInstance:

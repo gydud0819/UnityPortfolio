@@ -12,4 +12,11 @@ public class CameraBound : MonoBehaviour
         if (player == null) return; 
         transform.position = player.position + offset;
     }
+
+    public void SetTarget(Transform target)
+    {
+        player = target;
+        Debug.Log($"[CameraBound] 카메라 대상 연결 완료 → {target.name}");
+    }
+
 }

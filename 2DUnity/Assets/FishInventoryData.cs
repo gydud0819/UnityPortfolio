@@ -14,59 +14,73 @@ public class FishInventoryData : ScriptableObject
 
     public List<FishSlot> caughtFishList = new List<FishSlot>();
 
+    /// <summary>
+    /// 새로운 물고기 추가 (공용 인벤토리 반영)
+    /// </summary>
     public void AddFish(FishType type, Sprite icon)
     {
         var existing = caughtFishList.Find(f => f.fishType == type);
         if (existing != null)
         {
             existing.count++;
+            return;
         }
-        else
+
+        // ? 반드시 Resources에서 다시 로드 시도
+        Sprite sprite = icon;
+        if (sprite == null)
         {
-            Sprite sprite = icon;
-            if (sprite == null)
+            string path = $"Fish/{type}";
+            Sprite[] loadedSprites = Resources.LoadAll<Sprite>(path);
+            if (loadedSprites.Length > 0)
             {
-                string path = $"Fish/{type}";
-                Sprite[] loadedSprites = Resources.LoadAll<Sprite>(path);
-                if (loadedSprites.Length > 0)
-                {
-                    sprite = loadedSprites[0];
-                    Debug.Log($"[FishInventoryData] {path} 시트에서 첫 스프라이트 로드 성공 ?");
-                }
-                else
-                {
-                    sprite = Resources.Load<Sprite>(path);
-                    if (sprite == null)
-                        Debug.LogWarning($"[FishInventoryData] {path} 로드 실패 ?");
-                    else
-                        Debug.Log($"[FishInventoryData] {path} 단일 스프라이트 로드 성공 ?");
-                }
+                sprite = loadedSprites[0];
+                Debug.Log($"[FishInventoryData] {path} 첫 스프라이트 로드 성공 ?");
             }
-
-            // ? 여기서 리스트에 실제로 추가해야 함!
-            caughtFishList.Add(new FishSlot
+            else
             {
-                fishType = type,
-                fishIcon = sprite,
-                count = 1
-            });
-
-            Debug.Log($"[FishInventoryData] {type} 신규 추가 완료 ?");
+                sprite = Resources.Load<Sprite>(path);
+                Debug.LogWarning($"[FishInventoryData] {path} 로드 실패 ?");
+            }
         }
 
-        Debug.Log($"[FishInventoryData] {type} 추가됨. 총 {caughtFishList.Count}종 보유 중.");
+        caughtFishList.Add(new FishSlot
+        {
+            fishType = type,
+            fishIcon = sprite,   // ? 아이콘 null 방지
+            count = 1
+        });
+
+        Debug.Log($"[FishInventoryData] {type} 추가 완료 ? 아이콘={(sprite != null)}");
     }
 
+
+    /// <summary>
+    /// 전체 초기화 (씬 이동 시 데이터 싹 비움)
+    /// </summary>
     public void Clear()
     {
         caughtFishList.Clear();
-        Debug.Log("[FishInventoryData] 전체 데이터 초기화 완료.");
+        Debug.Log("[FishInventoryData] 전체 데이터 초기화 완료 ??");
     }
 
+    /// <summary>
+    /// 바다 → 육지 전송용 (공유 인벤토리 ↔ 보관함)
+    /// </summary>
     public void TransferTo(FishInventoryData targetInventory)
     {
+        if (targetInventory == null)
+        {
+            Debug.LogWarning("[FishInventoryData] TransferTo 실패 - targetInventory 없음 ?");
+            return;
+        }
+
+        int movedCount = 0;
+
         foreach (var fish in caughtFishList)
         {
+            if (fish == null) continue;
+
             var existing = targetInventory.caughtFishList.Find(f => f.fishType == fish.fishType);
             if (existing != null)
             {
@@ -74,7 +88,7 @@ public class FishInventoryData : ScriptableObject
             }
             else
             {
-                // 여기서도 icon이 null일 수 있으니 다시 로드하도록 추가
+                // 아이콘 누락 시 재로드
                 Sprite sprite = fish.fishIcon;
                 if (sprite == null)
                 {
@@ -90,9 +104,11 @@ public class FishInventoryData : ScriptableObject
                     count = fish.count
                 });
             }
+
+            movedCount++;
         }
 
-        Debug.Log($"[FishInventoryData] {targetInventory.name}으로 {caughtFishList.Count}종 이동 완료 ?");
-        Clear();
+        Debug.Log($"[FishInventoryData] {targetInventory.name}으로 {movedCount}종 이동 완료 ?");
+        Clear(); // 이동 후 초기화
     }
 }

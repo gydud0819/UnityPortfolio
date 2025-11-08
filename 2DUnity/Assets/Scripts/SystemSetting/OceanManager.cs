@@ -8,7 +8,6 @@ public class OceanManager : MonoBehaviour
     [SerializeField] private OxygenManager oxygenManager;
     [SerializeField] private InventoryUI inventoryUI;
 
-    // ✅ GameManager에서 직접 초기화해줄 때 호출됨
     public void Initialize(FishSpawner spawner, OxygenManager oxygen, InventoryUI inv)
     {
         fishSpawner = spawner;
@@ -17,24 +16,16 @@ public class OceanManager : MonoBehaviour
         Debug.Log("[OceanManager] Initialize 완료 ✅");
     }
 
-    private void Awake()
-    {
-        Debug.Log("[OceanManager] Awake 실행됨");
-    }
-
-    private void Start()
-    {
-        StartCoroutine(LateStart());
-    }
+    private void Start() => StartCoroutine(LateStart());
 
     private IEnumerator LateStart()
     {
         yield return null;
-
         fishSpawner?.FishSpawn();
         oxygenManager?.ResetOxygen();
     }
 
+    // ✅ 물고기 잡았을 때 호출
     public void AddCaughtFish(string fishName)
     {
         if (inventoryUI == null)
@@ -50,23 +41,41 @@ public class OceanManager : MonoBehaviour
             return;
         }
 
+        // 🐟 스프라이트 로드 (경로 예비 fallback 포함)
         Sprite fishSprite = Resources.Load<Sprite>(info.worldSpritePath);
         if (fishSprite == null)
+            fishSprite = Resources.Load<Sprite>($"Sprites/Fish/{fishName}");
+
+        if (fishSprite == null)
         {
-            Debug.LogWarning($"[OceanManager] {info.worldSpritePath} 스프라이트 로드 실패 ❌");
+            Debug.LogWarning($"[OceanManager] {fishName} 스프라이트 로드 실패 ❌");
             return;
         }
 
-        if (System.Enum.TryParse(fishName, out FishType fishType))
-        {
-            inventoryUI.AddItemToUI(fishType, fishSprite);
-            Debug.Log($"[OceanManager] {fishType} → 인벤토리 및 데이터 추가 완료 ✅");
-        }
-        else
+        if (!System.Enum.TryParse(fishName, out FishType fishType))
         {
             Debug.LogWarning($"[OceanManager] {fishName} → FishType 변환 실패 ❌");
+            return;
         }
 
+        // ✅ 1) 공용 데이터에 즉시 저장
+        var gm = GameManager.Instance;
+        if (gm != null)
+        {
+            var sharedData = gm.GetSharedInventoryData();
+            if (sharedData != null)
+            {
+                sharedData.AddFish(fishType, fishSprite);
+                Debug.Log($"[OceanManager] {fishType} → sharedInventoryData에 추가 완료 ✅");
+            }
+            else
+                Debug.LogWarning("[OceanManager] sharedInventoryData가 null임 ❌");
+        }
+
+        // ✅ 2) 바다 인벤토리 UI 갱신
+        inventoryUI.AddItemToUI(fishType, fishSprite);
+
+        // ✅ 3) JSON에도 동기화 (백업용)
         CaughtFishManager.AddFish(fishName);
     }
 }

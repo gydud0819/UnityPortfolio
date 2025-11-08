@@ -2,13 +2,23 @@ using UnityEngine;
 
 public class StorageButton : MonoBehaviour
 {
-    [SerializeField] private GameObject storageUI;
+    private StorageUI storageUI;
 
-    public void ToggleStorage()
+    public void SetTargetStorage(StorageUI ui)
     {
-        if (storageUI == null) return;
+        storageUI = ui;
+    }
 
-        bool isActive = storageUI.activeSelf;
-        storageUI.SetActive(!isActive);
+    public void OnClickOpenStorage()
+    {
+        if (storageUI != null)
+        {
+            storageUI.ToggleInventoryUI();
+            Debug.Log("[StorageButton] 보관함 열기 성공 ?");
+        }
+        else
+        {
+            Debug.LogWarning("[StorageButton] StorageUI 참조 없음 ?");
+        }
     }
 }

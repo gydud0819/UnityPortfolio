@@ -7,9 +7,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] public FishInventoryData sharedInventoryData;
 
     [Header("슬롯 부모 오브젝트")]
-    [SerializeField] private GameObject inventoryPanelRoot; // Inventory Bar 연결
-    [SerializeField] private Transform quickbarParent;      // Q Content
-    [SerializeField] private Transform inventoryParent;     // I Content
+    [SerializeField] private GameObject inventoryPanelRoot; // 전체 인벤토리 패널
+    [SerializeField] private Transform quickbarParent;      // 퀵슬롯 부모
+    [SerializeField] private Transform inventoryParent;     // 일반 인벤토리 부모
 
     [Header("슬롯 프리팹")]
     [SerializeField] private GameObject slotPrefab;
@@ -24,11 +24,12 @@ public class InventoryUI : MonoBehaviour
     private PlayerCtrls playerCtrls;
     private bool isInventoryOpen = false;
 
-    // ? GameManager에서 공용 데이터 직접 주입할 수 있도록
+    // ? GameManager에서 공용 데이터 주입 시 바로 UI 갱신
     public void SetInventoryData(FishInventoryData data)
     {
         sharedInventoryData = data;
-        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ({data.GetHashCode()})");
+        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ? ({data?.name})");
+        RefreshUI();
     }
 
     private void Awake()
@@ -50,10 +51,8 @@ public class InventoryUI : MonoBehaviour
     private void Start()
     {
         inventoryPanelRoot.SetActive(true);
-
         CreateSlots(quickbarParent, quickbarSlots, quickbarSize);
         CreateSlots(inventoryParent, inventorySlots, inventorySize);
-
         inventoryPanelRoot.SetActive(false);
     }
 
@@ -65,6 +64,12 @@ public class InventoryUI : MonoBehaviour
 
     private void CreateSlots(Transform parent, List<UISlot> list, int size)
     {
+        if (slotPrefab == null || parent == null)
+        {
+            Debug.LogError("[InventoryUI] 슬롯 생성 실패 ? (prefab 또는 parent 없음)");
+            return;
+        }
+
         for (int i = 0; i < size; i++)
         {
             GameObject newSlot = Instantiate(slotPrefab, parent);
@@ -75,15 +80,20 @@ public class InventoryUI : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(parent.GetComponent<RectTransform>());
     }
 
-    // ?? 물고기 추가
+    // ? 물고기 추가 (UI + 데이터 + JSON 통합)
     public void AddItemToUI(FishType fish, Sprite fishIcon)
     {
-        if (fishIcon == null) return;
+        if (fishIcon == null)
+        {
+            Debug.LogWarning($"[InventoryUI] {fish} 아이콘이 null ??");
+            return;
+        }
 
-        // 데이터에도 바로 반영
+        // ? 데이터에 반영
         sharedInventoryData?.AddFish(fish, fishIcon);
+        CaughtFishManager.AddFish(fish.ToString());
 
-        // 퀵바 먼저 채우기
+        // ?? 퀵바 먼저 채우기
         foreach (UISlot slot in quickbarSlots)
         {
             if (!slot.IsEmpty && slot.FishType == fish)
@@ -104,7 +114,7 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        // 인벤토리 슬롯
+        // ?? 인벤토리 슬롯 채우기
         foreach (UISlot slot in inventorySlots)
         {
             if (!slot.IsEmpty && slot.FishType == fish)
@@ -125,6 +135,29 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("인벤토리가 가득 찼습니다 ?");
+        Debug.LogWarning("[InventoryUI] 인벤토리가 가득 찼습니다 ??");
+    }
+
+    // ? JSON이나 ScriptableObject 데이터 기준으로 UI 리셋 후 다시 채움
+    public void RefreshUI()
+    {
+        if (sharedInventoryData == null)
+        {
+            Debug.LogWarning("[InventoryUI] Refresh 실패 - sharedInventoryData 없음 ?");
+            return;
+        }
+
+        // 모든 슬롯 초기화
+        foreach (var s in quickbarSlots) s.Clear();
+        foreach (var s in inventorySlots) s.Clear();
+
+        // 데이터 기반으로 다시 채움
+        foreach (var fish in sharedInventoryData.caughtFishList)
+        {
+            Sprite icon = fish.fishIcon ?? Resources.Load<Sprite>($"Sprites/Fish/{fish.fishType}");
+            AddItemToUI(fish.fishType, icon);
+        }
+
+        Debug.Log($"[InventoryUI] UI 새로고침 완료 ? ({sharedInventoryData.caughtFishList.Count}종)");
     }
 }

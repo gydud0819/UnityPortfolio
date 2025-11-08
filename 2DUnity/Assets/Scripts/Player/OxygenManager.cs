@@ -46,26 +46,31 @@ public class OxygenManager : MonoBehaviour
 
     private IEnumerator OxygenDepletedSequence()
     {
+        if (isSequenceRunning) yield break;
         isSequenceRunning = true;
-        Debug.Log("산소 부족 → 바로 육지로 전환");
+
+        Debug.Log("산소 부족 → 육지로 전환 준비");
+
+        // 자연스러운 전환 텀
+        yield return new WaitForSeconds(0.1f);
 
         // 인벤토리 삭제
         var inv = GameObject.Find("InventoryCanvas(Clone)");
         if (inv != null)
         {
-            Object.DestroyImmediate(inv);
-            Debug.Log("[OxygenManager] 인벤토리 즉시 삭제 완료");
+            Destroy(inv);
+            Debug.Log("[OxygenManager] 인벤토리 삭제 완료 ✅");
         }
 
-        // 산소 게이지 삭제
+        // 산소 UI 삭제
         var oxy = GameObject.Find("OxygenUI(Clone)");
         if (oxy != null)
         {
-            Object.DestroyImmediate(oxy);
-            Debug.Log("[OxygenManager] 산소UI 즉시 삭제 완료");
+            Destroy(oxy);
+            Debug.Log("[OxygenManager] 산소 UI 삭제 완료 ✅");
         }
 
-        // Land로 이동
+        // 씬 이동
         if (GameManager.Instance != null)
         {
             GameManager.Instance.GoToFadeScene();
@@ -75,8 +80,6 @@ public class OxygenManager : MonoBehaviour
             Debug.LogWarning("[OxygenManager] GameManager.Instance 없음 → 직접 Land로 이동");
             UnityEngine.SceneManagement.SceneManager.LoadScene("Land");
         }
-        // 잠깐 텀 (자연스러운 전환)
-        yield return new WaitForSeconds(0.1f);
 
         isSequenceRunning = false;
     }
