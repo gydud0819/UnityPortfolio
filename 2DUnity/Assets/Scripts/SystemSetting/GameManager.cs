@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     private GameObject playerInstance;
     private GameObject oceanMapInstance;
+    private GameObject buttonCanvasInstance;
 
     [Header("공용 인벤토리 데이터 (씬 공통 사용)")]
     [SerializeField] private FishInventoryData sharedInventoryData;
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("[GameManager] OceanManager를 찾을 수 없습니다 ❌");
         }
 
+        SoundManager.Instance.PlaySFX(SoundManager.Instance.waterSplashSFX);
+
         Debug.Log("[GameManager] Ocean 씬 세팅 완료 ✅");
     }
 
@@ -127,7 +130,6 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("[GameManager] Land 씬 세팅 시작");
 
-        // ✅ StorageUI 생성
         GameObject storageUIObj = Instantiate(storageUICanvasPrefab);
         var storageUI = storageUIObj.GetComponentInChildren<StorageUI>(true);
         if (storageUI != null)
@@ -135,37 +137,43 @@ public class GameManager : MonoBehaviour
             storageUI.SetInventoryData(sharedInventoryData);
             Debug.Log("[GameManager] StorageUI 생성 및 데이터 연결 완료 ✅");
         }
-        else
-        {
-            Debug.LogWarning("[GameManager] StorageUI를 찾을 수 없음 ❌");
-        }
 
-        // ✅ 버튼 캔버스 생성
         if (buttonCanvasPrefab != null)
         {
-            GameObject buttonObj = Instantiate(buttonCanvasPrefab);
-            Debug.Log("[GameManager] 버튼 캔버스 생성 완료 ✅");
+            buttonCanvasInstance = Instantiate(buttonCanvasPrefab); // 저장
+            buttonCanvasInstance.SetActive(true); // 기본 활성화
 
-            // 🔗 버튼이 StorageUI를 인식하도록 직접 연결
-            var storageButton = buttonObj.GetComponentInChildren<StorageButton>(true);
+            var storageButton = buttonCanvasInstance.GetComponentInChildren<StorageButton>(true);
             if (storageButton != null && storageUI != null)
             {
                 storageButton.SetTargetStorage(storageUI);
                 Debug.Log("[GameManager] StorageButton ↔ StorageUI 연결 완료 ✅");
-            }
-            else
-            {
-                Debug.LogWarning("[GameManager] StorageButton 연결 실패 ❌");
             }
         }
 
         Debug.Log("[GameManager] Land 씬 세팅 완료 ✅");
     }
 
+    public GameObject GetButtonCanvasInstance()
+    {
+        return buttonCanvasInstance;
+    }
 
+    public void GoToOcean()
+    {
+        if (SceneryManager.Instance != null)
+            SceneryManager.Instance.LoadScene("Ocean");
+        else
+            SceneManager.LoadScene("Ocean");
+    }
 
-    public void GoToOcean() => SceneManager.LoadScene("Ocean");
-    public void GoToLand() => SceneManager.LoadScene("Land");
+    public void GoToLand()
+    {
+        if (SceneryManager.Instance != null)
+            SceneryManager.Instance.LoadScene("Land");
+        else
+            SceneManager.LoadScene("Land");
+    }
 
     public void GoToFadeScene()
     {

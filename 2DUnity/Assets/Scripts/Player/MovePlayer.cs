@@ -63,6 +63,7 @@ public class MovePlayer : MonoBehaviour
         {
             rigidbody2D.linearVelocity = Vector2.zero;
             animator.speed = 0.5f;
+            SoundManager.Instance.StopSwimSFX();
             return;
         }
 
@@ -106,10 +107,12 @@ public class MovePlayer : MonoBehaviour
             if (moveDir == Vector2.zero)
             {
                 animator.speed = 0.5f;  // Idle 상태: 천천히 흔들
+                SoundManager.Instance.StopSwimSFX();
             }
             else
             {
                 animator.speed = 1.5f;  // 이동 중: 빠르게 수영
+                SoundManager.Instance.PlaySwimSFX();
             } 
         }
     }

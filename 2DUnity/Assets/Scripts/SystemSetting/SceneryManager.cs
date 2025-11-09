@@ -8,55 +8,47 @@ public class SceneryManager : MonoBehaviour
     [SerializeField] GameObject screen;
     [SerializeField] Slider progress;
     [SerializeField] float displayProgress;
+
+    public static SceneryManager Instance;
+
     private void Awake()
     {
-        var objects = FindObjectsOfType<SceneryManager>();
-
-        if (objects.Length > 1)
+        // 싱글톤 처리
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
 
-        DontDestroyOnLoad(gameObject);      // 게임 오브젝트를 삭제하지 않고 같이 들고간다는 의미 
-
+        // ?? 시작 시에는 무조건 비활성화
+        if (screen != null)
+            screen.SetActive(false);
     }
-
-    /// <summary>
-    /// <AsyncOperation>
-    /// allowSceneActivation : 장면이 준비된 즉시, 장면이 활성화되는 것을 허용하는 변수
-    /// isDone : 해당 동작이 완료 되었는지 나타내는 변수 (읽기 전용)
-    /// progress : 작업의 진행상태를 나타내는 변수 (읽기 전용)
-    /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
-    /// 
-
 
     public void LoadScene(string sceneName)
     {
         StartCoroutine(TransitionScene(sceneName));
     }
 
-
+    // SceneryManager.cs 내부
 
     public IEnumerator TransitionScene(string sceneName)
     {
-        progress.value = 0;     // 초기 세팅
+        // ?? 버튼 UI 비활성화 (Land 씬 기준)
+        GameObject buttons = GameManager.Instance?.GetButtonCanvasInstance();
+        if (buttons != null) buttons.SetActive(false);
+
+        progress.value = 0;
         displayProgress = 0;
         screen.SetActive(true);
-        // <AsyncOperation>
-        // allowSceneActivation : 장면이 준비된 즉시, 장면이 활성화되는 것을 허용하는 변수
 
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneName);
-        asyncOperation.allowSceneActivation = false;        // 장면 비활성화 
+        asyncOperation.allowSceneActivation = false;
 
-        // <AsyncOperation>
-        // isDone : 해당 동작이 완료 되었는지 나타내는 변수 (읽기 전용)
-        while (asyncOperation.isDone == false)
+        while (!asyncOperation.isDone)
         {
-            // <AsyncOperation>
-            // progress : 작업의 진행상태를 나타내는 변수 (읽기 전용)
             if (asyncOperation.progress >= 0.9f)
             {
                 progress.value = Mathf.Lerp(progress.value, 1.0f, Time.deltaTime);
@@ -65,6 +57,11 @@ public class SceneryManager : MonoBehaviour
                 {
                     asyncOperation.allowSceneActivation = true;
                     screen.SetActive(false);
+
+                    // ? 씬 전환 완료 후 버튼 UI 다시 활성화
+                    if (sceneName == "Land" && buttons != null)
+                        buttons.SetActive(true);
+
                     yield break;
                 }
             }
@@ -73,8 +70,8 @@ public class SceneryManager : MonoBehaviour
                 progress.value = asyncOperation.progress;
             }
 
-
             yield return null;
         }
     }
+
 }
