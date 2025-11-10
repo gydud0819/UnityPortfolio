@@ -58,74 +58,74 @@ public class GameManager : MonoBehaviour
             SetupLandScene();
     }
 
-    // 🌊 Ocean Scene 세팅
+    // Ocean Scene 세팅
     private IEnumerator SetupOceanScene()
     {
         Debug.Log("[GameManager] Ocean 씬 세팅 시작");
 
-        // 🧍‍♀️ 플레이어 생성
+        // 플레이어 생성
         if (playerPrefab != null)
             playerInstance = Instantiate(playerPrefab);
 
-        // 🐠 맵 생성
+        // 맵 생성
         if (oceanMapPrefab != null)
             oceanMapInstance = Instantiate(oceanMapPrefab);
 
-        // 🐟 물고기 스포너
+        // 물고기 스포너
         FishSpawner spawner = null;
         if (fishSpawnerPrefab != null)
             spawner = Instantiate(fishSpawnerPrefab).GetComponent<FishSpawner>();
 
-        // 🌬 산소 UI
+        // 산소 UI
         OxygenManager oxygenMgr = null;
         if (oxygenUIPrefab != null)
             oxygenMgr = Instantiate(oxygenUIPrefab).GetComponent<OxygenManager>();
 
-        // 🎒 인벤토리 UI
+        // 인벤토리 UI
         InventoryUI inventoryUI = null;
         if (inventoryUIPrefab != null)
             inventoryUI = Instantiate(inventoryUIPrefab).GetComponentInChildren<InventoryUI>(true);
 
-        // ⚠ 경고 UI
+        // 경고 UI
         if (warningUIPrefab != null)
             Instantiate(warningUIPrefab);
 
-        // 🧾 데이터 로더
+        // 데이터 로더
         if (fishDataLoaderPrefab != null)
             Instantiate(fishDataLoaderPrefab);
 
-        yield return null; // 🔥 한 프레임 더 대기 (카메라와 오브젝트 로딩 기다림)
+        yield return null; // 한 프레임 더 대기 (카메라와 오브젝트 로딩 기다림)
 
-        // 🎥 카메라 연결
+        // 카메라 연결
         CameraBound cam = FindFirstObjectByType<CameraBound>();
         if (cam != null && playerInstance != null)
         {
             cam.SetTarget(playerInstance.transform);
-            Debug.Log("[GameManager] CameraBound 플레이어 연결 완료 ✅");
+            Debug.Log("[GameManager] CameraBound 플레이어 연결 완료");
         }
         else
         {
-            Debug.LogWarning("[GameManager] CameraBound 또는 Player를 찾을 수 없습니다 ❌");
+            Debug.LogWarning("[GameManager] CameraBound 또는 Player를 찾을 수 없습니다");
         }
 
-        // 🧩 OceanManager 연결
+        // OceanManager 연결
         var oceanManager = FindObjectOfType<OceanManager>();
         if (oceanManager != null)
         {
             oceanManager.Initialize(spawner, oxygenMgr, inventoryUI);
-            Debug.Log("[GameManager] OceanManager 초기화 완료 ✅");
+            Debug.Log("[GameManager] OceanManager 초기화 완료");
         }
         else
         {
-            Debug.LogWarning("[GameManager] OceanManager를 찾을 수 없습니다 ❌");
+            Debug.LogWarning("[GameManager] OceanManager를 찾을 수 없습니다");
         }
 
         SoundManager.Instance.PlaySFX(SoundManager.Instance.waterSplashSFX);
 
-        Debug.Log("[GameManager] Ocean 씬 세팅 완료 ✅");
+        Debug.Log("[GameManager] Ocean 씬 세팅 완료");
     }
 
-    // 🏝 Land Scene 세팅
+    // Land Scene 세팅
     private void SetupLandScene()
     {
         Debug.Log("[GameManager] Land 씬 세팅 시작");
@@ -135,7 +135,7 @@ public class GameManager : MonoBehaviour
         if (storageUI != null)
         {
             storageUI.SetInventoryData(sharedInventoryData);
-            Debug.Log("[GameManager] StorageUI 생성 및 데이터 연결 완료 ✅");
+            Debug.Log("[GameManager] StorageUI 생성 및 데이터 연결 완료");
         }
 
         if (buttonCanvasPrefab != null)
@@ -147,11 +147,11 @@ public class GameManager : MonoBehaviour
             if (storageButton != null && storageUI != null)
             {
                 storageButton.SetTargetStorage(storageUI);
-                Debug.Log("[GameManager] StorageButton ↔ StorageUI 연결 완료 ✅");
+                Debug.Log("[GameManager] StorageButton ↔ StorageUI 연결 완료");
             }
         }
 
-        Debug.Log("[GameManager] Land 씬 세팅 완료 ✅");
+        Debug.Log("[GameManager] Land 씬 세팅 완료");
     }
 
     public GameObject GetButtonCanvasInstance()

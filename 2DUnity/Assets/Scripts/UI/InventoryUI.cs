@@ -28,7 +28,7 @@ public class InventoryUI : MonoBehaviour
     public void SetInventoryData(FishInventoryData data)
     {
         sharedInventoryData = data;
-        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ? ({data?.name})");
+        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ({data?.name})");
         RefreshUI();
     }
 
@@ -85,7 +85,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (fishIcon == null)
         {
-            Debug.LogWarning($"[InventoryUI] {fish} 아이콘이 null ??");
+            Debug.LogWarning($"[InventoryUI] {fish} 아이콘이 null");
             return;
         }
 
@@ -135,7 +135,7 @@ public class InventoryUI : MonoBehaviour
             }
         }
 
-        Debug.LogWarning("[InventoryUI] 인벤토리가 가득 찼습니다 ??");
+        Debug.LogWarning("[InventoryUI] 인벤토리가 가득 찼습니다");
     }
 
     // ? JSON이나 ScriptableObject 데이터 기준으로 UI 리셋 후 다시 채움
@@ -143,7 +143,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (sharedInventoryData == null)
         {
-            Debug.LogWarning("[InventoryUI] Refresh 실패 - sharedInventoryData 없음 ?");
+            Debug.LogWarning("[InventoryUI] Refresh 실패 - sharedInventoryData 없음");
             return;
         }
 
@@ -158,6 +158,6 @@ public class InventoryUI : MonoBehaviour
             AddItemToUI(fish.fishType, icon);
         }
 
-        Debug.Log($"[InventoryUI] UI 새로고침 완료 ? ({sharedInventoryData.caughtFishList.Count}종)");
+        Debug.Log($"[InventoryUI] UI 새로고침 완료 ({sharedInventoryData.caughtFishList.Count}종)");
     }
 }

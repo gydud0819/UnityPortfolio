@@ -37,7 +37,7 @@ public static class CaughtFishManager
                 return new CaughtFishList();
 
             var data = JsonUtility.FromJson<CaughtFishList>(json);
-            Debug.Log($"[CaughtFishManager] JSON 로드 완료 ? ({data.caughtFishList.Count}종)");
+            Debug.Log($"[CaughtFishManager] JSON 로드 완료 ({data.caughtFishList.Count}종)");
             return data;
         }
         catch (System.Exception e)
@@ -60,7 +60,7 @@ public static class CaughtFishManager
             {
                 writer.Write(json);
             }
-            Debug.Log($"[CaughtFishManager] 저장 완료 ?? ({SavePath})");
+            Debug.Log($"[CaughtFishManager] 저장 완료 ({SavePath})");
         }
         catch (System.Exception e)
         {
@@ -69,13 +69,14 @@ public static class CaughtFishManager
     }
 
     /// <summary>
+    /// GameManager가 sharedInventoryData 유지 (DontDestroyOnLoad)
     /// ScriptableObject에 JSON 데이터 반영 (예: 육지씬 진입 시)
     /// </summary>
     public static void SyncToInventoryData(FishInventoryData inventory)
     {
         if (inventory == null)
         {
-            Debug.LogWarning("[CaughtFishManager] Sync 실패 - FishInventoryData 없음 ?");
+            Debug.LogWarning("[CaughtFishManager] Sync 실패 - FishInventoryData 없음");
             return;
         }
 
@@ -91,24 +92,24 @@ public static class CaughtFishManager
             }
         }
 
-        Debug.Log($"[CaughtFishManager] JSON → ScriptableObject 동기화 완료 ? ({inventory.caughtFishList.Count}종)");
+        Debug.Log($"[CaughtFishManager] JSON → ScriptableObject 동기화 완료 ({inventory.caughtFishList.Count}종)");
     }
 
     /// <summary>
-    /// 물고기 한 종류 추가 및 저장
+    /// 물고기 추가 및 저장
     /// </summary>
     public static void AddFish(string fishName)
     {
         if (string.IsNullOrEmpty(fishName))
         {
-            Debug.LogWarning("[CaughtFishManager] 빈 이름 물고기 추가 시도됨 ?");
+            Debug.LogWarning("[CaughtFishManager] 빈 이름 물고기 추가 시도됨");
             return;
         }
 
         // 기존 JSON 데이터 불러오기
         CaughtFishList data = Load();
 
-        // 이미 존재하는 물고기인지 확인
+        // 이미 존재하는 물고기인지 확인하기
         var existing = data.caughtFishList.Find(f => f.fishName == fishName);
         if (existing != null)
         {
@@ -116,27 +117,11 @@ public static class CaughtFishManager
         }
         else
         {
-            data.caughtFishList.Add(new CaughtFishData
-            {
-                fishName = fishName,
-                count = 1
-            });
+            data.caughtFishList.Add(new CaughtFishData { fishName = fishName, count = 1 });
         }
 
         // JSON 저장
         Save(data);
-
-        // ? ScriptableObject에도 즉시 반영
-        if (GameManager.Instance != null)
-        {
-            var sharedData = GameManager.Instance.GetSharedInventoryData();
-            if (sharedData != null && System.Enum.TryParse(fishName, out FishType fishType))
-            {
-                Sprite icon = Resources.Load<Sprite>($"Sprites/Fish/{fishName}");
-                sharedData.AddFish(fishType, icon);
-                Debug.Log($"[CaughtFishManager] {fishName} → sharedInventoryData에도 반영 완료 ?");
-            }
-        }
 
         Debug.Log($"[CaughtFishManager] {fishName} 추가됨 (총 {data.caughtFishList.Count}종)");
     }
@@ -149,7 +134,7 @@ public static class CaughtFishManager
         if (File.Exists(SavePath))
         {
             File.Delete(SavePath);
-            Debug.Log("[CaughtFishManager] caught_fish.json 삭제됨 ??");
+            Debug.Log("[CaughtFishManager] caught_fish.json 삭제됨");
         }
     }
 }

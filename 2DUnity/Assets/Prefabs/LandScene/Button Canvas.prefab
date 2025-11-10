@@ -219,7 +219,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 6364751481937334280}
   - component: {fileID: 2809044722581740046}
   - component: {fileID: 2869180234726550460}
+  - component: {fileID: 931436455114340196}
   m_Layer: 5
   m_Name: End Button
   m_TagString: Untagged
@@ -889,6 +890,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLockedButton: 0
+--- !u!114 &931436455114340196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245568031794898422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &4893184839246907797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,7 +1247,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1282,6 +1298,7 @@ GameObject:
   - component: {fileID: 1180008749139466335}
   - component: {fileID: 5744750514363816674}
   - component: {fileID: 3174805588764103400}
+  - component: {fileID: 8399896384888936564}
   m_Layer: 5
   m_Name: archive Button
   m_TagString: Untagged
@@ -1416,6 +1433,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLockedButton: 1
+--- !u!114 &8399896384888936564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380120434098454247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &5401428808320123913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,7 +1817,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1972,6 +2004,7 @@ GameObject:
   - component: {fileID: 8212404583841118520}
   - component: {fileID: 9005494746283780673}
   - component: {fileID: 125183325227232996}
+  - component: {fileID: 1093565087220854169}
   m_Layer: 5
   m_Name: mail Box Button
   m_TagString: Untagged
@@ -2106,6 +2139,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLockedButton: 1
+--- !u!114 &1093565087220854169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6591214345889720049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &7439238595133404421
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,6 +2301,7 @@ GameObject:
   - component: {fileID: 1579930086714527185}
   - component: {fileID: 6650982346774036331}
   - component: {fileID: 1775987183992002179}
+  - component: {fileID: 489782903656797269}
   m_Layer: 5
   m_Name: My Info Button
   m_TagString: Untagged
@@ -2399,6 +2448,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLockedButton: 0
+--- !u!114 &489782903656797269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7442058257122983876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8104762656238321457
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,6 +2476,7 @@ GameObject:
   - component: {fileID: 7013692839052361455}
   - component: {fileID: 5133525844629721309}
   - component: {fileID: 8349698409151527346}
+  - component: {fileID: 8980731914792259774}
   m_Layer: 5
   m_Name: Shop Button
   m_TagString: Untagged
@@ -2546,6 +2611,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLockedButton: 1
+--- !u!114 &8980731914792259774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8104762656238321457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!1 &8235360444876592071
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,7 +2724,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2780,7 +2860,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

@@ -10,7 +10,7 @@ public class FishInventoryManager : MonoBehaviour
         if (inventoryUI == null)
         {
             inventoryUI = FindObjectOfType<InventoryUI>();
-            Debug.Log($"[FishInventoryManager] Awake에서 InventoryUI 자동 연결 완료 ? ({inventoryUI?.name})");
+            Debug.Log($"[FishInventoryManager] Awake에서 InventoryUI 자동 연결 완료 ({inventoryUI?.name})");
         }
     }
 
@@ -21,7 +21,7 @@ public class FishInventoryManager : MonoBehaviour
     {
         if (fish == null)
         {
-            Debug.LogWarning("[FishInventoryManager] FishType이 비어 있음 ?");
+            Debug.LogWarning("[FishInventoryManager] FishType이 비어 있음");
             return;
         }
 
@@ -33,23 +33,23 @@ public class FishInventoryManager : MonoBehaviour
 
             if (fishSprite == null)
             {
-                Debug.LogWarning($"[FishInventoryManager] {path} 스프라이트 로드 실패 ?");
+                Debug.LogWarning($"[FishInventoryManager] {path} 스프라이트 로드 실패");
                 return;
             }
         }
 
-        // ?? InventoryUI 연결 확인
+        // InventoryUI 연결 확인
         if (inventoryUI == null)
         {
-            Debug.LogWarning("[FishInventoryManager] InventoryUI가 연결되지 않음 ?");
+            Debug.LogWarning("[FishInventoryManager] InventoryUI가 연결되지 않음");
             return;
         }
 
-        // ? UI 업데이트
+        // UI 업데이트
         inventoryUI.AddItemToUI(fish, fishSprite);
-        Debug.Log($"[FishInventoryManager] UI에 {fish} 추가 완료 ?");
+        Debug.Log($"[FishInventoryManager] UI에 {fish} 추가 완료");
 
-        // ? ScriptableObject(sharedInventoryData)에 반영
+        // ScriptableObject(sharedInventoryData)에 반영
         var gm = GameManager.Instance;
         if (gm != null)
         {
@@ -57,19 +57,19 @@ public class FishInventoryManager : MonoBehaviour
             if (sharedData != null)
             {
                 sharedData.AddFish(fish, fishSprite);
-                Debug.Log($"[FishInventoryManager] sharedInventoryData에 {fish} 저장 완료 ?");
+                Debug.Log($"[FishInventoryManager] sharedInventoryData에 {fish} 저장 완료");
             }
             else
             {
-                Debug.LogWarning("[FishInventoryManager] sharedInventoryData가 null임 ?");
+                Debug.LogWarning("[FishInventoryManager] sharedInventoryData가 null임");
             }
         }
         else
         {
-            Debug.LogWarning("[FishInventoryManager] GameManager.Instance 없음 ?");
+            Debug.LogWarning("[FishInventoryManager] GameManager.Instance 없음");
         }
 
-        // ? JSON 백업 (optional)
-        CaughtFishManager.AddFish(fish.ToString());
+        // JSON 백업 (optional)
+        //CaughtFishManager.AddFish(fish.ToString());
     }
 }
