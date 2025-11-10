@@ -3,24 +3,39 @@ using UnityEngine;
 
 public class LandUIManager : MonoBehaviour
 {
-    public GameObject confirmationPanel;
-    public GameObject mainButtonsGroup;
+    [Header("팝업 참조")]
+    [SerializeField] private GameObject exitPopup;
+    [SerializeField] private GameObject comingSoonPopup;
+    [SerializeField] private bool isActive = false;
 
-    public void OnExploreButton()
+    public void ShowExitPopup()
     {
-        confirmationPanel.SetActive(true);
-        mainButtonsGroup.SetActive(false);
-        GameManager.Instance.GoToOcean();
+        exitPopup.SetActive(true);
     }
 
-    public void ConfirmExplore()
+    public void HideExitPopup()
     {
-        SceneManager.LoadScene("Ocean");
+        exitPopup.SetActive(false);
     }
 
-    public void CancelExplore()
+    public void ShowComingSoon()
     {
-        confirmationPanel.SetActive(true);
-        mainButtonsGroup.SetActive(true);
+        isActive = !isActive;
+        comingSoonPopup.SetActive(isActive);
+
+    }
+
+    public void HideComingSoon()
+    {
+        comingSoonPopup.SetActive(false);
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("게임 종료");
+        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

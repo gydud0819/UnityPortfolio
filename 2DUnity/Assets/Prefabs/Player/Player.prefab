@@ -507,8 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6628318ba87054f82177bb82af20e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  maxDistance: 3
+  speed: 6
+  maxDistance: 10
 --- !u!60 &4245281831473872445
 PolygonCollider2D:
   m_ObjectHideFlags: 0

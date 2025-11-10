@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishType: 11
   fishName: "\uB3C5\uB3C4\uC0C8\uC6B0"
-  moveSpeed: 0.5
+  moveSpeed: 2
   moveDistance: 4
   isCaught: 0
 --- !u!50 &4835614729074898338

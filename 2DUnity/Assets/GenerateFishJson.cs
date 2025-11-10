@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
 using UnityEditor;
+#endif
+using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 
+#if UNITY_EDITOR
 [System.Serializable]
 public class FishInfo
 {
@@ -23,7 +26,7 @@ public class GenerateSimpleFishJson
     [MenuItem("Tools/Generate Simple Fish JSON")]
     public static void GenerateJson()
     {
-        string fishPath = "Assets/Resources/Fish"; // ✅ Resources 폴더 안으로 한정
+        string fishPath = "Assets/Resources/Fish"; // Resources 폴더 안으로 한정
         string savePath = "Assets/Resources/fish_data.json";
 
         // Resources/Fish 폴더 안에 있는 스프라이트만 검색
@@ -60,6 +63,7 @@ public class GenerateSimpleFishJson
         File.WriteAllText(savePath, json);
         AssetDatabase.Refresh();
 
-        Debug.Log($"🐟 {fishList.fishList.Count}마리 물고기 데이터 생성 완료 ✅: {savePath}");
+        Debug.Log($"{fishList.fishList.Count}마리 물고기 데이터 생성 완료: {savePath}");
     }
 }
+#endif

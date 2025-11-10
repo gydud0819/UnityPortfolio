@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishType: 6
   fishName: "\uCCAD\uC5B4"
-  moveSpeed: 1.2
-  moveDistance: 2.5
+  moveSpeed: 3
+  moveDistance: 7
   isCaught: 0
 --- !u!50 &8730171287690089314
 Rigidbody2D:

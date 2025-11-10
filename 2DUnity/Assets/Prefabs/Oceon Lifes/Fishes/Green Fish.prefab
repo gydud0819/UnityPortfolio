@@ -190,6 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishType: 4
   fishName: "\uCD08\uB85D\uBB3C\uACE0\uAE30"
-  moveSpeed: 1.5
+  moveSpeed: 2.5
   moveDistance: 6
   isCaught: 0

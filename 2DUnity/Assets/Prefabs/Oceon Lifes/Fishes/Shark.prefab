@@ -154,8 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishType: 5
   fishName: "\uC544\uAE30\uC0C1\uC5B4"
-  moveSpeed: 3
-  moveDistance: 3
+  moveSpeed: 5
+  moveDistance: 10
   isCaught: 0
 --- !u!58 &8432390369284847208
 CircleCollider2D:

@@ -57,6 +57,6 @@ MonoBehaviour:
   - {fileID: 6111979973914580002, guid: f19249723df9e6d4caf2fc086d119192, type: 3}
   - {fileID: 908799281540322576, guid: 870fd92117b285c4d8bedc7bb5102bc3, type: 3}
   - {fileID: 4943377490803325365, guid: e09a4f3974b11444e8dc61822e6fb4b1, type: 3}
-  fishInterval: 2
-  fishSpawnX: 10
+  fishInterval: 1.5
+  fishSpawnX: 20
   fishSpawnY: -20
