@@ -69,7 +69,7 @@ public static class CaughtFishManager
     }
 
     /// <summary>
-    /// GameManager가 sharedInventoryData 유지 (DontDestroyOnLoad)
+    /// GameManager가 fishInventoryData 유지 (DontDestroyOnLoad)
     /// ScriptableObject에 JSON 데이터 반영 (예: 육지씬 진입 시)
     /// </summary>
     public static void SyncToInventoryData(FishInventoryData inventory)

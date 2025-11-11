@@ -35,7 +35,7 @@ public class StorageUI : MonoBehaviour
     public void SetInventoryData(FishInventoryData data)
     {
         sharedInventoryData = data;
-        Debug.Log($"[StorageUI] sharedInventoryData 주입 완료 ({data?.name})");
+        Debug.Log($"[StorageUI] fishInventoryData 주입 완료 ({data?.name})");
         LoadFishData();
     }
 

@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour
     private GameObject buttonCanvasInstance;
 
     [Header("공용 인벤토리 데이터 (씬 공통 사용)")]
-    [SerializeField] private FishInventoryData sharedInventoryData;
-    public FishInventoryData GetSharedInventoryData() => sharedInventoryData;
+    [SerializeField] private FishInventoryData fishInventoryData;
+    public FishInventoryData GetSharedInventoryData() => fishInventoryData;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"[GameManager] 초기화 완료 — sharedInventoryData 해시: {sharedInventoryData?.GetHashCode()}");
+        Debug.Log($"[GameManager] 초기화 완료 — fishInventoryData 해시: {fishInventoryData?.GetHashCode()}");
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -134,7 +134,7 @@ public class GameManager : MonoBehaviour
         var storageUI = storageUIObj.GetComponentInChildren<StorageUI>(true);
         if (storageUI != null)
         {
-            storageUI.SetInventoryData(sharedInventoryData);
+            storageUI.SetInventoryData(fishInventoryData);
             Debug.Log("[GameManager] StorageUI 생성 및 데이터 연결 완료");
         }
 

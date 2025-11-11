@@ -49,7 +49,7 @@ public class FishInventoryManager : MonoBehaviour
         inventoryUI.AddItemToUI(fish, fishSprite);
         Debug.Log($"[FishInventoryManager] UI에 {fish} 추가 완료");
 
-        // ScriptableObject(sharedInventoryData)에 반영
+        // ScriptableObject(fishInventoryData)에 반영
         var gm = GameManager.Instance;
         if (gm != null)
         {

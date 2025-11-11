@@ -28,7 +28,7 @@ public class InventoryUI : MonoBehaviour
     public void SetInventoryData(FishInventoryData data)
     {
         sharedInventoryData = data;
-        Debug.Log($"[InventoryUI] sharedInventoryData 주입 완료 ({data?.name})");
+        Debug.Log($"[InventoryUI] fishInventoryData 주입 완료 ({data?.name})");
         RefreshUI();
     }
 
@@ -143,7 +143,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (sharedInventoryData == null)
         {
-            Debug.LogWarning("[InventoryUI] Refresh 실패 - sharedInventoryData 없음");
+            Debug.LogWarning("[InventoryUI] Refresh 실패 - fishInventoryData 없음");
             return;
         }
 
