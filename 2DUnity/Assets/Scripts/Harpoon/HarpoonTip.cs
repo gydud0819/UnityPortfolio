@@ -9,13 +9,13 @@ public class HarpoonTip : MonoBehaviour
     private Vector3 direction;
     private HarpoonPool pool;
 
-    // 🔹 HarpoonPool에서 연결할 때 호출됨
+    // HarpoonPool에서 연결할 때 호출됨
     public void SetPool(HarpoonPool poolRef)
     {
         pool = poolRef;
     }
 
-    // 🔹 작살 발사 시 초기화
+    // 작살 발사 시 초기화
     public void Fire(Vector3 dir, HarpoonPool poolRef)
     {
         startPos = transform.position;

@@ -25,7 +25,7 @@ public class FishInventoryManager : MonoBehaviour
             return;
         }
 
-        // ?? 스프라이트 보정 (없을 경우 Resources에서 로드)
+        // 스프라이트 보정 (없을 경우 Resources에서 로드)
         if (fishSprite == null)
         {
             string path = $"Sprites/Fish/{fish}";

@@ -64,7 +64,7 @@ public class StorageUI : MonoBehaviour
         Debug.Log($"[StorageUI] √— {slotMap.Count}/{totalSlots} ΩΩ∑‘ ∏≈«Œ øœ∑·");
     }
 
-    // ? ΩΩ∑‘ √ ±‚»≠
+    // ΩΩ∑‘ √ ±‚»≠
     private void ClearSlots()
     {
         foreach (var slot in allSlots)

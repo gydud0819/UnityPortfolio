@@ -480,10 +480,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4481117988835753282, guid: 738f930a97405fd46b5d7ec17351a072, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4558050739207605059, guid: 738f930a97405fd46b5d7ec17351a072, type: 3}
       propertyPath: waterSplashSFX
       value: 
       objectReference: {fileID: 8300000, guid: 88cc41f9ac637c844b9d6f513e8c2321, type: 3}
+    - target: {fileID: 6834448682621671743, guid: 738f930a97405fd46b5d7ec17351a072, type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 8993044277324242835, guid: 738f930a97405fd46b5d7ec17351a072, type: 3}
       propertyPath: m_Name
       value: Sound Manager
