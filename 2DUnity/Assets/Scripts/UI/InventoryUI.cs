@@ -91,7 +91,7 @@ public class InventoryUI : MonoBehaviour
 
         // ? 데이터에 반영
         sharedInventoryData?.AddFish(fish, fishIcon);
-        CaughtFishManager.AddFish(fish.ToString());
+        //CaughtFishManager.AddFish(fish.ToString());
 
         // ?? 퀵바 먼저 채우기
         foreach (UISlot slot in quickbarSlots)

@@ -23,6 +23,8 @@ public class FishInventoryData : ScriptableObject
         if (existing != null)
         {
             existing.count++;
+
+            SaveManager.Instance.Save();
             return;
         }
 
@@ -110,5 +112,43 @@ public class FishInventoryData : ScriptableObject
 
         Debug.Log($"[FishInventoryData] {targetInventory.name}으로 {movedCount}종 이동 완료 ?");
         Clear(); // 이동 후 초기화
+    }
+
+    public void AddFishSave(string typeString, int count)
+    {
+        if (!System.Enum.TryParse(typeString, out FishType type))
+        {
+            return;
+        }
+
+        string path = $"Fish/{type}";
+        Sprite sprite = null;
+
+        Sprite[] loaded = Resources.LoadAll<Sprite>(path);
+        if (loaded.Length > 0)
+        {
+            sprite = loaded[0];
+        }
+        else
+        {
+            sprite = Resources.Load<Sprite>(path);
+        }
+
+        var exisiting = caughtFishList.Find(f => f.fishType == type);
+
+        if (exisiting != null)
+        {
+            exisiting.count = count;
+
+            if (exisiting.fishIcon == null)
+            {
+                exisiting.fishIcon = sprite;
+            }
+
+            return;
+        }
+
+        caughtFishList.Add(new FishSlot { fishIcon = sprite, fishType = type, count = count });
+
     }
 }

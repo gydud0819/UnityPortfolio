@@ -76,6 +76,6 @@ public class OceanManager : MonoBehaviour
         inventoryUI.AddItemToUI(fishType, fishSprite);
 
         // ✅ 3) JSON에도 동기화 (백업용)
-        CaughtFishManager.AddFish(fishName);
+        //CaughtFishManager.AddFish(fishName);
     }
 }
