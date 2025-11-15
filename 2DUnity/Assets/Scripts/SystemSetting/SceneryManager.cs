@@ -22,7 +22,7 @@ public class SceneryManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        // ?? 시작 시에는 무조건 비활성화
+        // 시작 시에는 무조건 비활성화
         if (screen != null)
             screen.SetActive(false);
     }
@@ -36,7 +36,7 @@ public class SceneryManager : MonoBehaviour
 
     public IEnumerator TransitionScene(string sceneName)
     {
-        // ?? 버튼 UI 비활성화 (Land 씬 기준)
+        // 버튼 UI 비활성화 (Land 씬 기준)
         GameObject buttons = GameManager.Instance?.GetButtonCanvasInstance();
         if (buttons != null) buttons.SetActive(false);
 

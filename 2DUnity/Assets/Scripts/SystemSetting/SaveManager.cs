@@ -41,10 +41,13 @@ public class SaveManager : MonoBehaviour
 
         foreach (var fish in fishInventoryData.caughtFishList)
         {
-            saveData.fishList.Add(new FishSaveSlot { fishType = fish.fishType.ToString(), count = fish.count });
+            saveData.caughtFishList.Add(new FishSaveSlot { fishType = fish.fishType.ToString(), count = fish.count });
         }
 
         string json = JsonUtility.ToJson(saveData, true);
+
+        File.WriteAllText(savePath, json);
+        Debug.Log("게임 저장 완료");
     }
 
     public void Load()
@@ -65,7 +68,7 @@ public class SaveManager : MonoBehaviour
 
         fishInventoryData.caughtFishList.Clear();
 
-        foreach (var slot in loadedData.fishList)
+        foreach (var slot in loadedData.caughtFishList)
         {
             fishInventoryData.AddFishSave(slot.fishType, slot.count);
         }

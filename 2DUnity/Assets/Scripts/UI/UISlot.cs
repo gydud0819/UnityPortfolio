@@ -31,7 +31,7 @@ public class UISlot : MonoBehaviour
         {
             itemIcon.enabled = true;
             itemIcon.sprite = icon;
-            Debug.Log($"[UISlot] {type} 슬롯 아이콘 적용됨 {(icon != null ? icon.name : "NULL")}"); // ? 추가
+            Debug.Log($"[UISlot] {type} 슬롯 아이콘 적용됨 {(icon != null ? icon.name : "NULL")}"); 
         }
 
         var rt = itemIcon.rectTransform;

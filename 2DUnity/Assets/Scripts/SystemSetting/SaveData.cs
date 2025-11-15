@@ -11,5 +11,5 @@ public class FishSaveSlot
 [Serializable]
 public class SaveData
 {
-    public List<FishSaveSlot> fishList = new List<FishSaveSlot>();
+    public List<FishSaveSlot> caughtFishList = new List<FishSaveSlot>();
 }

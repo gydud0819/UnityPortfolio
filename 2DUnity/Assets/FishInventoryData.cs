@@ -28,7 +28,7 @@ public class FishInventoryData : ScriptableObject
             return;
         }
 
-        // ? 반드시 Resources에서 다시 로드 시도
+        // 반드시 Resources에서 다시 로드 시도
         Sprite sprite = icon;
         if (sprite == null)
         {
@@ -37,23 +37,25 @@ public class FishInventoryData : ScriptableObject
             if (loadedSprites.Length > 0)
             {
                 sprite = loadedSprites[0];
-                Debug.Log($"[FishInventoryData] {path} 첫 스프라이트 로드 성공 ?");
+                Debug.Log($"[FishInventoryData] {path} 첫 스프라이트 로드 성공");
             }
             else
             {
                 sprite = Resources.Load<Sprite>(path);
-                Debug.LogWarning($"[FishInventoryData] {path} 로드 실패 ?");
+                Debug.LogWarning($"[FishInventoryData] {path} 로드 실패");
             }
         }
 
         caughtFishList.Add(new FishSlot
         {
             fishType = type,
-            fishIcon = sprite,   // ? 아이콘 null 방지
+            fishIcon = sprite,   // 아이콘 null 방지
             count = 1
         });
 
-        Debug.Log($"[FishInventoryData] {type} 추가 완료 ? 아이콘={(sprite != null)}");
+        Debug.Log($"[FishInventoryData] {type} 추가 완료 아이콘={(sprite != null)}");
+
+        SaveManager.Instance.Save();
     }
 
 
@@ -63,7 +65,7 @@ public class FishInventoryData : ScriptableObject
     public void Clear()
     {
         caughtFishList.Clear();
-        Debug.Log("[FishInventoryData] 전체 데이터 초기화 완료 ??");
+        Debug.Log("[FishInventoryData] 전체 데이터 초기화 완료");
     }
 
     /// <summary>
@@ -73,7 +75,7 @@ public class FishInventoryData : ScriptableObject
     {
         if (targetInventory == null)
         {
-            Debug.LogWarning("[FishInventoryData] TransferTo 실패 - targetInventory 없음 ?");
+            Debug.LogWarning("[FishInventoryData] TransferTo 실패 - targetInventory 없음");
             return;
         }
 
@@ -110,7 +112,7 @@ public class FishInventoryData : ScriptableObject
             movedCount++;
         }
 
-        Debug.Log($"[FishInventoryData] {targetInventory.name}으로 {movedCount}종 이동 완료 ?");
+        Debug.Log($"[FishInventoryData] {targetInventory.name}으로 {movedCount}종 이동 완료");
         Clear(); // 이동 후 초기화
     }
 
